@@ -120,7 +120,7 @@ const AboutSection = () => {
               >
                 <div className="w-full h-full rounded-full overflow-hidden bg-gray-800">
                   <img
-                    src="../src/assets/santosh.jpg"
+                    src="src/assets/santosh.jpg"
                     alt="Profile"
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   />
