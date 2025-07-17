@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const POPUP_KEY = 'portfolio_popup_closed';
-
 const popupVariants = {
   hidden: { opacity: 0, scale: 0.85, y: 40 },
   visible: { opacity: 1, scale: 1, y: 0, transition: { type: 'spring', stiffness: 320, damping: 24 } },
@@ -11,26 +9,26 @@ const popupVariants = {
 
 const PortfolioPopup = () => {
   const [show, setShow] = useState(false);
+  const [hasClosed, setHasClosed] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem(POPUP_KEY) === 'true') return;
     const onScroll = () => {
-      if (window.scrollY > 200 && !show) {
+      if (window.scrollY > 200 && !show && !hasClosed) {
         setShow(true);
       }
     };
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
-  }, [show]);
+  }, [show, hasClosed]);
 
   const handleClose = () => {
     setShow(false);
-    localStorage.setItem(POPUP_KEY, 'true');
+    setHasClosed(true);
   };
 
   return (
     <AnimatePresence>
-      {show && (
+      {show && !hasClosed && (
         <motion.div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
           initial={{ opacity: 0 }}
