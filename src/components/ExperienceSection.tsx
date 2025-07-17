@@ -35,14 +35,14 @@ const ExperienceSection = () => {
   ];
 
   return (
-    <section id="experience" className="py-20">
-      <div className="container mx-auto px-6">
+    <section id="experience" className="py-10">
+      <div className="container mx-auto px-3">
         <div ref={sectionReveal.ref} className={sectionReveal.className}>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+          <div className="text-center mb-8">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-2">
               Work <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">Experience</span>
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-400 text-base max-w-2xl mx-auto">
               My professional journey and the experiences that shaped my career
             </p>
           </div>

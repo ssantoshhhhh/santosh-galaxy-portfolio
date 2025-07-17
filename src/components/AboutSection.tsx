@@ -4,49 +4,44 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 const AboutSection = () => {
   const [displayedText, setDisplayedText] = useState('');
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
   const imageRef = useRef<HTMLDivElement>(null);
   
   const leftReveal = useScrollReveal('left');
   const rightReveal = useScrollReveal('right');
 
   const roles = [
+    'System Designer',
+    'UI Developer',
+    'Web Developer',
     'Full Stack Developer',
-    'Web Developer', 
     'Frontend Developer',
     'Backend Developer'
   ];
 
   useEffect(() => {
-    let intervalId: NodeJS.Timeout;
+    let typingSpeed = isDeleting ? 50 : 100;
+    let timeoutId: NodeJS.Timeout;
+    const currentRole = roles[currentRoleIndex];
 
-    const typeWriter = () => {
-      const role = roles[currentRoleIndex];
-      if (displayedText.length < role.length) {
-        setDisplayedText(role.substring(0, displayedText.length + 1));
-      } else {
-        clearInterval(intervalId);
-        setTimeout(() => {
-          deleteWriter();
-        }, 2000);
-      }
-    };
-
-    const deleteWriter = () => {
-      if (displayedText.length > 0) {
-        setDisplayedText(displayedText.substring(0, displayedText.length - 1));
-      } else {
-        clearInterval(intervalId);
+    if (!isDeleting && displayedText.length < currentRole.length) {
+      timeoutId = setTimeout(() => {
+        setDisplayedText(currentRole.substring(0, displayedText.length + 1));
+      }, typingSpeed);
+    } else if (!isDeleting && displayedText.length === currentRole.length) {
+      timeoutId = setTimeout(() => setIsDeleting(true), 1500);
+    } else if (isDeleting && displayedText.length > 0) {
+      timeoutId = setTimeout(() => {
+        setDisplayedText(currentRole.substring(0, displayedText.length - 1));
+      }, typingSpeed);
+    } else if (isDeleting && displayedText.length === 0) {
+      timeoutId = setTimeout(() => {
+        setIsDeleting(false);
         setCurrentRoleIndex((currentRoleIndex + 1) % roles.length);
-        setTimeout(() => {
-          intervalId = setInterval(typeWriter, 100);
-        }, 500);
-      }
-    };
-
-    intervalId = setInterval(typeWriter, 100);
-
-    return () => clearInterval(intervalId);
-  }, [currentRoleIndex, displayedText]);
+      }, 500);
+    }
+    return () => clearTimeout(timeoutId);
+  }, [displayedText, isDeleting, currentRoleIndex, roles]);
 
   const handleImageMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!imageRef.current) return;
@@ -74,32 +69,30 @@ const AboutSection = () => {
       id="about" 
       className="min-h-screen flex items-center justify-center py-20"
     >
-      <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-3">
+        <div className="grid lg:grid-cols-2 gap-6 items-center">
           {/* Left side - Text content */}
-          <div ref={leftReveal.ref} className={`space-y-6 ${leftReveal.className}`}>
-            <div className="space-y-4">
-              <h1 className="text-5xl lg:text-7xl font-bold text-white">
-                Hi, I'm <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">Santosh Seelaboina</span>
+          <div ref={leftReveal.ref} className={`space-y-4 ${leftReveal.className}`}>
+            <div className="space-y-2">
+              <h1 className="text-5xl lg:text-6xl font-display text-white leading-tight">
+                Hi, I'm <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent font-display">Santosh Seelaboina</span>
               </h1>
               
-              <div className="text-2xl lg:text-3xl text-gray-300 min-h-[2.5rem]">
+              <div className="text-2xl lg:text-2xl text-gray-300 min-h-[2.5rem] font-heading">
                 I'm a{' '}
-                <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent font-semibold">
+                <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent font-heading font-semibold">
                   {displayedText}
                   <span className="animate-blink">|</span>
                 </span>
               </div>
               
-              <p className="text-lg text-gray-400 max-w-2xl leading-relaxed">
-                Passionate developer with expertise in modern web technologies. 
-                I love creating beautiful, functional, and user-friendly applications 
-                that solve real-world problems.
+              <p className="text-base text-gray-400 max-w-2xl leading-relaxed font-body">
+                I am a passionate and creative developer with a strong foundation in computer science and a love for building beautiful, scalable, and user-centric digital experiences. My journey began with C and Data Structures, and has grown to mastering the MERN stack, UI/UX design, and system architecture. I thrive on solving real-world problems, collaborating with teams, and continuously learning new technologies to deliver impactful solutions.
               </p>
             </div>
             
             <div className="flex flex-wrap gap-4">
-              <button onClick={()=>window.open('./resume.pdf')} className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25">
+              <button onClick={()=>window.open('./resume.pdf')} className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-full font-heading font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25">
                 Check Resume
               </button>
               {/* <button className="border border-white/20 text-white hover:bg-white/10 px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105">

@@ -61,27 +61,27 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-3 py-2">
         <div className="flex items-center justify-between">
           {/* Logo/Name */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2">
             <img 
               src={logoBg} 
               alt="Logo" 
               className="w-8 h-8 rounded-full"
             />
-            <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+            <div className="text-2xl font-display bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
               Santosh Seelaboina
             </div>
           </div>
 
           {/* Desktop Navigation Items */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-4">
             {navItems.map((item) => (
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 ${
+                className={`relative px-2 py-1 text-base font-heading font-medium transition-colors duration-300 ${
                   activeSection === item.href
                     ? 'text-blue-400'
                     : 'text-white hover:text-blue-300'
@@ -96,11 +96,11 @@ const Navbar = () => {
           </div>
 
           {/* Right side buttons */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2">
             <Button
               onClick={downloadResume}
               size="sm"
-              className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 hidden sm:flex"
+              className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 hidden sm:flex font-heading"
             >
               <Download className="w-4 h-4 mr-2" />
               Resume
@@ -125,14 +125,14 @@ const Navbar = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.98, y: -24 }}
               transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-              className="md:hidden mt-4 pb-4 border-t border-white/10"
+              className="md:hidden mt-2 pb-2 border-t border-white/10"
             >
-              <div className="flex flex-col space-y-2 mt-4">
+              <div className="flex flex-col space-y-1 mt-2">
                 {navItems.map((item) => (
                   <button
                     key={item.name}
                     onClick={() => scrollToSection(item.href)}
-                    className={`text-left px-3 py-2 text-sm font-medium transition-colors duration-300 rounded ${
+                    className={`text-left px-2 py-1 text-base font-heading font-medium transition-colors duration-300 rounded ${
                       activeSection === item.href
                         ? 'text-blue-400 bg-white/10'
                         : 'text-white hover:text-blue-300 hover:bg-white/5'
@@ -144,7 +144,7 @@ const Navbar = () => {
                 <Button
                   onClick={downloadResume}
                   size="sm"
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 mt-4 w-full"
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 mt-4 w-full font-heading"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   Resume

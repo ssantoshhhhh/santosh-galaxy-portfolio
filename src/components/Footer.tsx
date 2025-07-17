@@ -18,7 +18,7 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="text-center">
           {/* Name/Logo */}
-          <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent mb-6">
+          <div className="text-3xl font-display bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent mb-6">
             Santosh Seelaboina
           </div>
           
@@ -41,7 +41,7 @@ const Footer = () => {
           </div>
           
           {/* Copyright */}
-          <div className="text-gray-400 text-sm">
+          <div className="text-gray-400 text-sm font-body">
             <p className="mb-2">
               © 2024 Santosh Seelaboina. All rights reserved.
             </p>

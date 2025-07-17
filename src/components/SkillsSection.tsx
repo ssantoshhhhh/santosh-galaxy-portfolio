@@ -45,6 +45,7 @@ const SkillsSection = () => {
   const backendSkills = [
     { name: "Node Js", icon: <NodejsOriginalIcon size={24} /> },
     { name: "Express Js", icon: <ExpressOriginalIcon size={24} /> },
+    { name: "REST API", icon: <span className='text-xl'>🌐</span> },
     { name: "PHP", icon: <PhpOriginalIcon size={24} /> },
     { name: "MySQL", icon: <MysqlOriginalIcon size={24} /> },
     { name: "MongoDB", icon: <MongodbOriginalIcon size={24} /> }
@@ -94,10 +95,10 @@ const SkillsSection = () => {
     <section id="skills" className="py-20">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl lg:text-5xl font-display text-white mb-4">
             Skills
           </h2>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-3xl mx-auto font-body">
             Here are some of my skills on which I have been working on for the past 2 years.
           </p>
         </div>
@@ -111,7 +112,7 @@ const SkillsSection = () => {
             onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
             style={{ transformStyle: 'preserve-3d' }}
           >
-            <h3 className="text-2xl font-bold text-white mb-8 text-center">Frontend</h3>
+            <h3 className="text-2xl font-heading text-white mb-8 text-center">Frontend</h3>
             <div className="grid grid-cols-2 gap-4">
               {frontendSkills.map((skill, index) => (
                 <div 
@@ -122,7 +123,7 @@ const SkillsSection = () => {
                   }}
                 >
                   <span className="text-2xl">{skill.icon}</span>
-                  <span className="text-white font-medium text-sm">{skill.name}</span>
+                  <span className="text-white font-body font-medium text-sm">{skill.name}</span>
                 </div>
               ))}
             </div>
@@ -136,7 +137,7 @@ const SkillsSection = () => {
             onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
             style={{ transformStyle: 'preserve-3d' }}
           >
-            <h3 className="text-2xl font-bold text-white mb-8 text-center">Backend</h3>
+            <h3 className="text-2xl font-heading text-white mb-8 text-center">Backend</h3>
             <div className="grid grid-cols-2 gap-4">
               {backendSkills.map((skill, index) => (
                 <div 
@@ -147,7 +148,7 @@ const SkillsSection = () => {
                   }}
                 >
                   <span className="text-2xl">{skill.icon}</span>
-                  <span className="text-white font-medium text-sm">{skill.name}</span>
+                  <span className="text-white font-body font-medium text-sm">{skill.name}</span>
                 </div>
               ))}
             </div>
@@ -164,12 +165,12 @@ const SkillsSection = () => {
             onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
             style={{ transformStyle: 'preserve-3d' }}
           >
-            <h3 className="text-2xl font-bold text-white mb-8 text-center">Programming Languages</h3>
+            <h3 className="text-2xl font-heading text-white mb-8 text-center">Programming Languages</h3>
             <div className="grid grid-cols-2 gap-4">
               {programmingLanguages.map((skill, index) => (
                 <div key={skill.name} className="flex items-center justify-center space-x-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-white/10">
                   <span className="text-2xl">{skill.icon}</span>
-                  <span className="text-white font-medium text-sm">{skill.name}</span>
+                  <span className="text-white font-body font-medium text-sm">{skill.name}</span>
                 </div>
               ))}
             </div>
@@ -182,12 +183,12 @@ const SkillsSection = () => {
             onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
             style={{ transformStyle: 'preserve-3d' }}
           >
-            <h3 className="text-2xl font-bold text-white mb-8 text-center">Others</h3>
+            <h3 className="text-2xl font-heading text-white mb-8 text-center">Others</h3>
             <div className="grid grid-cols-2 gap-4">
               {others.map((skill, index) => (
                 <div key={skill.name} className="flex items-center justify-center space-x-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-white/10">
                   <span className="text-2xl">{skill.icon}</span>
-                  <span className="text-white font-medium text-sm">{skill.name}</span>
+                  <span className="text-white font-body font-medium text-sm">{skill.name}</span>
                 </div>
               ))}
             </div>
@@ -200,12 +201,12 @@ const SkillsSection = () => {
             onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
             style={{ transformStyle: 'preserve-3d' }}
           >
-            <h3 className="text-2xl font-bold text-white mb-8 text-center">Deployment</h3>
+            <h3 className="text-2xl font-heading text-white mb-8 text-center">Deployment</h3>
             <div className="grid grid-cols-2 gap-4">
               {deployment.map((skill, index) => (
                 <div key={skill.name} className="flex items-center justify-center space-x-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-white/10">
                   <span className="text-2xl">{skill.icon}</span>
-                  <span className="text-white font-medium text-sm">{skill.name}</span>
+                  <span className="text-white font-body font-medium text-sm">{skill.name}</span>
                 </div>
               ))}
             </div>
