@@ -240,7 +240,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onContactSectionVisible
                     onChange={handleInputChange}
                     required
                     className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:border-blue-400 font-body"
-                    placeholder="your.email@example.com"
+                    placeholder="Your Email"
                   />
                 </div>
               </div>

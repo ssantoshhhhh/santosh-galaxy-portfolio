@@ -16,18 +16,32 @@ export default async function handler(req, res) {
       });
     }
 
-    // Create transporter
+    // Get credentials from environment variables or use defaults
+    const emailUser = process.env.EMAIL_USER || 'santoshwebtechnology@gmail.com';
+    const emailPass = process.env.EMAIL_PASS || 'rrrwivywutbdwxul';
+
+    // Create transporter with better Gmail configuration
     const transporter = nodemailer.createTransporter({
       service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false, // true for 465, false for other ports
       auth: {
-        user: 'santoshwebtechnology@gmail.com',
-        pass: 'rrrwivywutbdwxul'
+        user: emailUser,
+        pass: emailPass
+      },
+      tls: {
+        rejectUnauthorized: false
       }
     });
 
+    // Verify transporter configuration
+    await transporter.verify();
+    console.log('SMTP connection verified successfully');
+
     // Email content
     const mailOptions = {
-      from: 'santoshwebtechnology@gmail.com',
+      from: `"Portfolio Contact" <${emailUser}>`,
       to: 'santoshkumar90101s@gmail.com',
       subject: `Portfolio Contact: ${subject}`,
       html: `
@@ -58,11 +72,12 @@ export default async function handler(req, res) {
     };
 
     // Send email
-    await transporter.sendMail(mailOptions);
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Message sent: %s', info.messageId);
 
     // Send confirmation email to the user
     const confirmationMailOptions = {
-      from: 'santoshwebtechnology@gmail.com',
+      from: `"Santosh Seelaboina" <${emailUser}>`,
       to: user_email,
       subject: 'Thank you for contacting me!',
       html: `
@@ -100,7 +115,8 @@ export default async function handler(req, res) {
       `
     };
 
-    await transporter.sendMail(confirmationMailOptions);
+    const confirmationInfo = await transporter.sendMail(confirmationMailOptions);
+    console.log('Confirmation sent: %s', confirmationInfo.messageId);
 
     res.status(200).json({ 
       success: true, 
@@ -109,9 +125,22 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error('Email sending error:', error);
+    
+    // More detailed error response
+    let errorMessage = 'Failed to send email. Please try again.';
+    
+    if (error.code === 'EAUTH') {
+      errorMessage = 'Authentication failed. Please check email credentials.';
+    } else if (error.code === 'ECONNECTION') {
+      errorMessage = 'Connection failed. Please check your internet connection.';
+    } else if (error.code === 'ETIMEDOUT') {
+      errorMessage = 'Request timed out. Please try again.';
+    }
+    
     res.status(500).json({ 
       success: false, 
-      message: 'Failed to send email. Please try again.' 
+      message: errorMessage,
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 } 
