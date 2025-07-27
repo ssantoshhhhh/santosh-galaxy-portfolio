@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import emailjs from 'emailjs-com';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,7 +18,6 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onContactSectionVisible
     subject: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -57,33 +57,20 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onContactSectionVisible
     e.preventDefault();
     if (!formRef.current) return;
     
-    setIsSubmitting(true);
-    
     // Show loading toast
     const loadingToast = toast.loading('Sending message...', {
       position: "top-center",
       autoClose: false,
       style: {
         zIndex: 9999,
-        marginTop: '80px'
+        marginTop: '80px' // Add margin to appear below navbar
       }
     });
 
-    try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      // Dismiss loading toast
-      toast.dismiss(loadingToast);
-
-      if (result.success) {
+    emailjs.sendForm('service_6tqa5pe', 'template_1ywvcxg', formRef.current, 'YWBJkRUvux5iVeOym')
+      .then(() => {
+        // Dismiss loading toast and show success
+        toast.dismiss(loadingToast);
         toast.success('Message sent successfully! 🎉', {
           position: "top-center",
           autoClose: 5000,
@@ -95,15 +82,15 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onContactSectionVisible
           theme: "dark",
           style: {
             zIndex: 9999,
-            marginTop: '80px'
+            marginTop: '80px' // Add margin to appear below navbar
           }
         });
-        
-        // Reset form
         setFormData({ user_name: '', user_email: '', subject: '', message: '' });
         formRef.current?.reset();
-      } else {
-        toast.error(result.message || 'Failed to send message. Please try again.', {
+      }, (error) => {
+        // Dismiss loading toast and show error
+        toast.dismiss(loadingToast);
+        toast.error('Failed to send message. Please try again.', {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -114,31 +101,11 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onContactSectionVisible
           theme: "dark",
           style: {
             zIndex: 9999,
-            marginTop: '80px'
+            marginTop: '80px' // Add margin to appear below navbar
           }
         });
-      }
-    } catch (error) {
-      // Dismiss loading toast and show error
-      toast.dismiss(loadingToast);
-      toast.error('Failed to send message. Please try again.', {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        style: {
-          zIndex: 9999,
-          marginTop: '80px'
-        }
+        console.error('EmailJS Error:', error);
       });
-      console.error('Email sending error:', error);
-    } finally {
-      setIsSubmitting(false);
-    }
   };
 
   const contactInfo = [
@@ -240,7 +207,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onContactSectionVisible
                     onChange={handleInputChange}
                     required
                     className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:border-blue-400 font-body"
-                    placeholder="Your Email"
+                    placeholder="Enter Your Email"
                   />
                 </div>
               </div>
@@ -273,10 +240,9 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onContactSectionVisible
               
               <Button 
                 type="submit" 
-                disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 font-heading disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 font-heading"
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                Send Message
               </Button>
             </form>
           </div>
