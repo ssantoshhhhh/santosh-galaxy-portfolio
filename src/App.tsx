@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Loader from './components/Loader';
-import PortfolioPopup from './components/PortfolioPopup';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -24,7 +23,6 @@ function App() {
 
   return (
     <>
-      <PortfolioPopup />
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <Toaster />

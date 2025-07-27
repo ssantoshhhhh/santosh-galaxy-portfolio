@@ -8,68 +8,96 @@ const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const sectionReveal = useScrollReveal('left');
 
-  const filters = ['All', 'Web Apps', 'Android Apps', 'Desktop Apps', 'Others'];
+  const filters = ['All', 'Web Apps', 'Desktop Apps', 'Others'];
 
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
+      title: "Campus Level E-commerce Market Place",
       category: "Web Apps",
-      duration: "3 months",
-      description: "A full-stack e-commerce solution with payment integration, inventory management, and admin dashboard.",
-      image: "/placeholder.svg",
-      liveUrl: "https://example.com",
-      codeUrl: "https://github.com/example"
+      duration: "In Development Phase",
+      description: "Full-featured e-commerce platform built with the MERN stack, featuring user authentication, product management, shopping cart, payment integration, and admin dashboard for campus essentials.",
+      image: "/src/assets/projectimages/campusconnect.jpg",
+      liveUrl: "",
+      codeUrl: "https://github.com/ssantoshhhhh/cc-pvt.git",
+      isLive: false
     },
     {
       id: 2,
-      title: "Task Management App",
-      category: "Android Apps",
-      duration: "2 months",
-      description: "Mobile app for team collaboration and task tracking with real-time notifications and offline support.",
-      image: "/placeholder.svg",
-      liveUrl: "https://play.google.com/store/apps/example",
-      codeUrl: "https://github.com/example"
+      title: "Flick Chatting Application",
+      category: "Web Apps",
+      duration: "In Development Phase",
+      description: "A real-time chat application built with React, Node.js, and Socket.io. Features include instant messaging, user authentication, online status, message history, and responsive design for seamless communication.",
+      image: "/src/assets/projectimages/flick.png",
+      liveUrl: "",
+      codeUrl: "https://github.com/ssantoshhhhh/flick-chat.git",
+      isLive: false
     },
     {
       id: 3,
-      title: "Portfolio Website",
+      title: "CSS Loaders Web App",
       category: "Web Apps",
-      duration: "1 month",
-      description: "Responsive portfolio website with 3D animations and smooth scrolling effects.",
-      image: "/placeholder.svg",
-      liveUrl: "https://example.com",
-      codeUrl: "https://github.com/example"
+      duration: "July 2025",
+      description: "A collection of beautiful and customizable CSS loading animations and spinners. Built with pure CSS and JavaScript, featuring various animation styles, customizable colors, and easy integration for web projects.",
+      image: "/src/assets/projectimages/css-loaders.png",
+      liveUrl: "https://css-loaders-liard.vercel.app/",
+      codeUrl: "https://github.com/ssantoshhhhh/css-loaders.git",
+      isLive: true
     },
     {
       id: 4,
-      title: "Desktop Calculator",
+      title: "Desktop Clock App",
       category: "Desktop Apps",
-      duration: "2 weeks",
-      description: "Cross-platform desktop calculator with advanced mathematical functions and history tracking.",
-      image: "/placeholder.svg",
-      liveUrl: "https://example.com/download",
-      codeUrl: "https://github.com/example"
+      duration: "Jun 2025",
+      description: "A simple Desktop clock app with timer, alarm and stopwatch functionality. Built with modern desktop technologies providing a clean and intuitive user interface.",
+      image: "/src/assets/projectimages/desktopclock.png",
+      liveUrl: "",
+      codeUrl: "https://github.com/ssantoshhhhh/desktop-clock.git",
+      isLive: false
     },
     {
       id: 5,
-      title: "API Documentation Tool",
-      category: "Others",
-      duration: "1 month",
-      description: "Tool for generating interactive API documentation with live testing capabilities.",
-      image: "/placeholder.svg",
-      liveUrl: "https://example.com",
-      codeUrl: "https://github.com/example"
+      title: "Incredible India - Tourist Places in India",
+      category: "Web Apps",
+      duration: "Apr 2025",
+      description: "A web project built using PHP, HTML, CSS, and JavaScript that showcases beautiful tourist destinations across different states of India with interactive features and detailed information.",
+      image: "/src/assets/projectimages/india.png",
+      liveUrl: "#",
+      codeUrl: "https://github.com/ssantoshhhhh/fsd-final.git",
+      isLive: false
     },
     {
       id: 6,
-      title: "Weather Dashboard",
+      title: "To-Do List",
       category: "Web Apps",
-      duration: "3 weeks",
-      description: "Real-time weather monitoring dashboard with charts, maps, and location-based forecasts.",
-      image: "/placeholder.svg",
-      liveUrl: "https://example.com",
-      codeUrl: "https://github.com/example"
+      duration: "Aug 2024",
+      description: "A basic task management app built with MongoDB, Express.js, React, and Node.js (MERN stack). Features include adding, editing, deleting tasks with persistent storage.",
+      image: "/src/assets/projectimages/todo.png",
+      liveUrl: "https://project-x-4cj1.onrender.com/",
+      codeUrl: "https://github.com/ssantoshhhhh/todorepo",
+      isLive: true
+    },
+    {
+      id: 7,
+      title: "Tic Tac Toe Game",
+      category: "Web Apps",
+      duration: "Oct 2024",
+      description: "A classic 2-player game built with HTML, CSS, and JavaScript. Take turns placing X and O on the grid to get three in a row. Features responsive design and smooth animations.",
+      image: "/src/assets/projectimages/tictactoe.png",
+      liveUrl: "https://tictactoe-r7sw.onrender.com/",
+      codeUrl: "https://github.com/ssantoshhhhh/tictactoe",
+      isLive: true
+    },
+    {
+      id: 8,
+      title: "Tic Tac Toe Game Using Python",
+      category: "Others",
+      duration: "Jun 2025",
+      description: "Self 2-Player Tic Tac Toe Game in Python. A simple text-based Tic Tac Toe game with console interface, perfect for learning Python programming fundamentals.",
+      image: "/src/assets/projectimages/python.png",
+      liveUrl: "#",
+      codeUrl: "https://github.com/ssantoshhhhh/python_tictactoe.git",
+      isLive: false
     }
   ];
 
@@ -163,15 +191,27 @@ const ProjectsSection = () => {
                           </div>
                           <div className="flex flex-col gap-2 mb-4 justify-center">
                             <Button
-                              className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-heading text-sm px-4 py-2"
-                              onClick={e => { e.stopPropagation(); window.open(project.liveUrl, '_blank'); }}
+                              className={`font-heading text-sm px-4 py-2 ${
+                                project.isLive 
+                                  ? 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white cursor-pointer'
+                                  : 'bg-gray-600 text-gray-400 cursor-not-allowed opacity-60'
+                              }`}
+                              onClick={e => { 
+                                e.stopPropagation(); 
+                                if (project.isLive) {
+                                  window.open(project.liveUrl, '_blank');
+                                }
+                              }}
+                              title={project.isLive ? "View Live Demo" : "Project Not Live Yet"}
+                              disabled={!project.isLive}
                             >
-                              Live Preview
+                              Live Demo
                             </Button>
                             <Button
                               variant="outline"
                               className="border-white/20 text-white hover:bg-white/10 bg-transparent font-heading text-sm px-4 py-2"
                               onClick={e => { e.stopPropagation(); window.open(project.codeUrl, '_blank'); }}
+                              title="View Source Code"
                             >
                               View Code
                             </Button>
@@ -219,16 +259,28 @@ const ProjectsSection = () => {
                         <div className="flex flex-col gap-2">
                           <Button
                             size="sm"
-                            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-heading text-xs"
-                            onClick={e => { e.stopPropagation(); window.open(project.liveUrl, '_blank'); }}
+                            className={`font-heading text-xs ${
+                              project.isLive 
+                                ? 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white cursor-pointer'
+                                : 'bg-gray-600 text-gray-400 cursor-not-allowed opacity-60'
+                            }`}
+                            onClick={e => { 
+                              e.stopPropagation(); 
+                              if (project.isLive) {
+                                window.open(project.liveUrl, '_blank');
+                              }
+                            }}
+                            title={project.isLive ? "View Live Demo" : "Project Not Live Yet"}
+                            disabled={!project.isLive}
                           >
-                            Live Preview
+                            Live Demo
                           </Button>
                           <Button
                             size="sm"
                             variant="outline"
                             className="border-white/20 text-white hover:bg-white/10 bg-transparent font-heading text-xs"
                             onClick={e => { e.stopPropagation(); window.open(project.codeUrl, '_blank'); }}
+                            title="View Source Code"
                           >
                             View Code
                           </Button>
@@ -270,15 +322,27 @@ const ProjectsSection = () => {
                       </div>
                       <div className="flex flex-row gap-6 mb-6 justify-center">
                         <Button
-                          className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-heading text-base px-6 py-3"
-                          onClick={e => { e.stopPropagation(); window.open(project.liveUrl, '_blank'); }}
+                          className={`font-heading text-base px-6 py-3 ${
+                            project.isLive 
+                              ? 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white cursor-pointer'
+                              : 'bg-gray-600 text-gray-400 cursor-not-allowed opacity-60'
+                          }`}
+                          onClick={e => { 
+                            e.stopPropagation(); 
+                            if (project.isLive) {
+                              window.open(project.liveUrl, '_blank');
+                            }
+                          }}
+                          title={project.isLive ? "View Live Demo" : "Project Not Live Yet"}
+                          disabled={!project.isLive}
                         >
-                          Live Preview
+                          Live Demo
                         </Button>
                         <Button
                           variant="outline"
                           className="border-white/20 text-white hover:bg-white/10 bg-transparent font-heading text-base px-6 py-3"
                           onClick={e => { e.stopPropagation(); window.open(project.codeUrl, '_blank'); }}
+                          title="View Source Code"
                         >
                           View Code
                         </Button>

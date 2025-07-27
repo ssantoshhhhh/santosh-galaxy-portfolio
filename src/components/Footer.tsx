@@ -1,16 +1,12 @@
-import {
-  LinkedinOriginalIcon,
-  GithubOriginalIcon,
-  TwitterOriginalIcon
-} from 'react-devicons';
+import { Linkedin, Github, Twitter, Instagram } from 'lucide-react';
 
 const Footer = () => {
   const socialLinks = [
-    { name: 'LinkedIn', url: 'https://linkedin.com/in/yourprofile', icon: <LinkedinOriginalIcon size={24} /> },
-    { name: 'GitHub', url: 'https://github.com/yourprofile', icon: <GithubOriginalIcon size={24} /> },
-    { name: 'Twitter', url: 'https://twitter.com/yourprofile', icon: <TwitterOriginalIcon size={24} /> },
-    { name: 'Instagram', url: 'https://instagram.com/yourprofile', icon: '📷' },
-    { name: 'YouTube', url: 'https://youtube.com/yourprofile', icon: '📺' }
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/santosh-seelaboina-56b5492b8/', icon: <Linkedin size={24} /> },
+    { name: 'GitHub', url: 'https://github.com/ssantoshhhhh', icon: <Github size={24} /> },
+  
+    { name: 'Instagram', url: 'https://instagram.com/ssantoshhhhh', icon: <Instagram size={24} /> },
+    
   ];
 
   return (

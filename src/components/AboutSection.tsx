@@ -16,7 +16,8 @@ const AboutSection = () => {
     'Web Developer',
     'Full Stack Developer',
     'Frontend Developer',
-    'Backend Developer'
+    'Backend Developer',
+    'Database Designer'
   ];
 
   useEffect(() => {
@@ -92,7 +93,7 @@ const AboutSection = () => {
             </div>
             
             <div className="flex flex-wrap gap-4">
-              <button onClick={()=>window.open('./resume.pdf')} className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-full font-heading font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25">
+              <button onClick={()=>window.open('./santosh_resume.pdf')} className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-full font-heading font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25">
                 Check Resume
               </button>
               {/* <button className="border border-white/20 text-white hover:bg-white/10 px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105">

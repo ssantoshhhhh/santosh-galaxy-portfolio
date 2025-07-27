@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -7,7 +7,11 @@ import emailjs from 'emailjs-com';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ContactSection = () => {
+interface ContactSectionProps {
+  onContactSectionVisible?: () => void;
+}
+
+const ContactSection: React.FC<ContactSectionProps> = ({ onContactSectionVisible }) => {
   const [formData, setFormData] = useState({
     user_name: '',
     user_email: '',
@@ -16,6 +20,31 @@ const ContactSection = () => {
   });
 
   const formRef = useRef<HTMLFormElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && onContactSectionVisible) {
+          onContactSectionVisible();
+        }
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the section is visible
+        rootMargin: '0px 0px -100px 0px' // Trigger slightly before the section is fully in view
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [onContactSectionVisible]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -98,7 +127,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-20">
+    <section id="contact" className="py-20" ref={sectionRef}>
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-display text-white mb-4">
@@ -178,7 +207,7 @@ const ContactSection = () => {
                     onChange={handleInputChange}
                     required
                     className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:border-blue-400 font-body"
-                    placeholder="your.email@example.com"
+                    placeholder="Enter Your Email"
                   />
                 </div>
               </div>

@@ -7,28 +7,29 @@ const popupVariants = {
   exit: { opacity: 0, scale: 0.85, y: 40, transition: { duration: 0.25 } },
 };
 
-const PortfolioPopup = () => {
-  const [show, setShow] = useState(false);
+interface PortfolioPopupProps {
+  showPopup: boolean;
+  onClose: () => void;
+}
+
+const PortfolioPopup: React.FC<PortfolioPopupProps> = ({ showPopup, onClose }) => {
   const [hasClosed, setHasClosed] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      if (window.scrollY > 200 && !show && !hasClosed) {
-        setShow(true);
-      }
-    };
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [show, hasClosed]);
+    if (showPopup && !hasClosed) {
+      // Reset hasClosed when showPopup becomes true
+      setHasClosed(false);
+    }
+  }, [showPopup]);
 
   const handleClose = () => {
-    setShow(false);
     setHasClosed(true);
+    onClose();
   };
 
   return (
     <AnimatePresence>
-      {show && !hasClosed && (
+      {showPopup && !hasClosed && (
         <motion.div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
           initial={{ opacity: 0 }}

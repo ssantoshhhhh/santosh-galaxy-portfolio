@@ -1,4 +1,5 @@
 
+import { useState } from 'react';
 import StarField from '@/components/StarField';
 import Navbar from '@/components/Navbar';
 import AboutSection from '@/components/AboutSection';
@@ -9,8 +10,19 @@ import EducationSection from '@/components/EducationSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
+import PortfolioPopup from '@/components/PortfolioPopup';
 
 const Index = () => {
+  const [showPortfolioPopup, setShowPortfolioPopup] = useState(false);
+
+  const handleContactSectionVisible = () => {
+    setShowPortfolioPopup(true);
+  };
+
+  const handleClosePortfolioPopup = () => {
+    setShowPortfolioPopup(false);
+  };
+
   return (
     <div className="min-h-screen text-white overflow-x-hidden">
       <StarField />
@@ -23,10 +35,11 @@ const Index = () => {
         <ExperienceSection />
         <ProjectsSection />
         <EducationSection />
-        <ContactSection />
+        <ContactSection onContactSectionVisible={handleContactSectionVisible} />
       </main>
       
       <Footer />
+      <PortfolioPopup showPopup={showPortfolioPopup} onClose={handleClosePortfolioPopup} />
     </div>
   );
 };

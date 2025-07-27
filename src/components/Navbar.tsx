@@ -46,8 +46,8 @@ const Navbar = () => {
 
   const downloadResume = () => {
     const link = document.createElement('a');
-    link.href = '/resume.pdf';
-    link.download = 'resume.pdf';
+    link.href = './santosh_resume.pdf';
+    link.download = 'santosh_resume.pdf';
     link.click();
   };
 
