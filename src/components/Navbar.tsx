@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Download, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoBg from '@/projectimages/logo-bg.png';
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState('about');
@@ -66,7 +65,7 @@ const Navbar = () => {
           {/* Logo/Name */}
           <div className="flex items-center space-x-2">
             <img 
-              src={logoBg} 
+              src="/projectimages/logo-bg.png" 
               alt="Logo" 
               className="w-8 h-8 rounded-full"
             />
