@@ -15,7 +15,7 @@ const ProjectsSection = () => {
       category: "Web Apps",
       duration: "In Development Phase",
       description: "Full-featured e-commerce platform built with the MERN stack, featuring user authentication, product management, shopping cart, payment integration, and admin dashboard for campus essentials.",
-      image: "/src/assets/projectimages/campusconnect.jpg",
+      image: "/src/projectimages/campusconnect.jpg",
       liveUrl: "",
       codeUrl: "https://github.com/ssantoshhhhh/cc-pvt.git",
       isLive: false
@@ -26,7 +26,7 @@ const ProjectsSection = () => {
       category: "Web Apps",
       duration: "In Development Phase",
       description: "A real-time chat application built with React, Node.js, and Socket.io. Features include instant messaging, user authentication, online status, message history, and responsive design for seamless communication.",
-      image: "/src/assets/projectimages/flick.png",
+      image: "/src/projectimages/flick.png",
       liveUrl: "",
       codeUrl: "https://github.com/ssantoshhhhh/flick-chat.git",
       isLive: false
@@ -37,7 +37,7 @@ const ProjectsSection = () => {
       category: "Web Apps",
       duration: "July 2025",
       description: "A collection of beautiful and customizable CSS loading animations and spinners. Built with pure CSS and JavaScript, featuring various animation styles, customizable colors, and easy integration for web projects.",
-      image: "/src/assets/projectimages/css-loaders.png",
+      image: "/src/projectimages/css-loaders.png",
       liveUrl: "https://css-loaders-liard.vercel.app/",
       codeUrl: "https://github.com/ssantoshhhhh/css-loaders.git",
       isLive: true
@@ -48,7 +48,7 @@ const ProjectsSection = () => {
       category: "Desktop Apps",
       duration: "Jun 2025",
       description: "A simple Desktop clock app with timer, alarm and stopwatch functionality. Built with modern desktop technologies providing a clean and intuitive user interface.",
-      image: "/src/assets/projectimages/desktopclock.png",
+      image: "/src/projectimages/desktopclock.png",
       liveUrl: "",
       codeUrl: "https://github.com/ssantoshhhhh/desktop-clock.git",
       isLive: false
@@ -59,7 +59,7 @@ const ProjectsSection = () => {
       category: "Web Apps",
       duration: "Apr 2025",
       description: "A web project built using PHP, HTML, CSS, and JavaScript that showcases beautiful tourist destinations across different states of India with interactive features and detailed information.",
-      image: "/src/assets/projectimages/india.png",
+      image: "/src/projectimages/india.png",
       liveUrl: "#",
       codeUrl: "https://github.com/ssantoshhhhh/fsd-final.git",
       isLive: false
@@ -70,7 +70,7 @@ const ProjectsSection = () => {
       category: "Web Apps",
       duration: "Aug 2024",
       description: "A basic task management app built with MongoDB, Express.js, React, and Node.js (MERN stack). Features include adding, editing, deleting tasks with persistent storage.",
-      image: "/src/assets/projectimages/todo.png",
+      image: "/src/projectimages/todo.png",
       liveUrl: "https://project-x-4cj1.onrender.com/",
       codeUrl: "https://github.com/ssantoshhhhh/todorepo",
       isLive: true
@@ -81,7 +81,7 @@ const ProjectsSection = () => {
       category: "Web Apps",
       duration: "Oct 2024",
       description: "A classic 2-player game built with HTML, CSS, and JavaScript. Take turns placing X and O on the grid to get three in a row. Features responsive design and smooth animations.",
-      image: "/src/assets/projectimages/tictactoe.png",
+      image: "/src/projectimages/tictactoe.png",
       liveUrl: "https://tictactoe-r7sw.onrender.com/",
       codeUrl: "https://github.com/ssantoshhhhh/tictactoe",
       isLive: true
@@ -92,7 +92,7 @@ const ProjectsSection = () => {
       category: "Others",
       duration: "Jun 2025",
       description: "Self 2-Player Tic Tac Toe Game in Python. A simple text-based Tic Tac Toe game with console interface, perfect for learning Python programming fundamentals.",
-      image: "/src/assets/projectimages/python.png",
+      image: "/src/projectimages/python.png",
       liveUrl: "#",
       codeUrl: "https://github.com/ssantoshhhhh/python_tictactoe.git",
       isLive: false

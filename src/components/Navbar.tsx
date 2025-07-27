@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Download, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoBg from '@/assets/projectimages/logo-bg.png';
+import logoBg from '@/projectimages/logo-bg.png';
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState('about');
