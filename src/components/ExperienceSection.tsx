@@ -5,6 +5,13 @@ const ExperienceSection = () => {
 
   const experiences = [
     {
+      title: "SDE Intern",
+      company: "bluconn",
+      duration: "Jan 2026 - current",
+      description: "Working as a SDE Intern at bluconn.",
+      side: "right"
+    },
+    {
       title: "Web Developer",
       company: "Bhimavaram Online's Lunch Box",
       duration: "Oct 2024 – Apr 2025",

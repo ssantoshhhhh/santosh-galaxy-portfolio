@@ -21,7 +21,11 @@ import {
   GithubOriginalIcon,
   PostmanOriginalIcon,
   VercelOriginalIcon,
-  NetlifyOriginalIcon
+  NetlifyOriginalIcon,
+  NextjsOriginalIcon,
+  NestjsOriginalIcon,
+  PrismaOriginalIcon,
+  DockerOriginalIcon
 } from 'react-devicons';
 
 const SkillsSection = () => {
@@ -39,7 +43,8 @@ const SkillsSection = () => {
     { name: "CSS", icon: <Css3OriginalIcon size={24} /> },
     { name: "JavaScript", icon: <JavascriptOriginalIcon size={24} /> },
     { name: "Bootstrap", icon: <BootstrapOriginalIcon size={24} /> },
-    { name: "Material UI", icon: <MaterialuiOriginalIcon size={24} /> }
+    { name: "Material UI", icon: <MaterialuiOriginalIcon size={24} /> },
+    { name: "Next Js", icon: <NextjsOriginalIcon size={24} /> }
   ];
 
   const backendSkills = [
@@ -48,11 +53,12 @@ const SkillsSection = () => {
     { name: "REST API", icon: <span className='text-xl'>🌐</span> },
     { name: "PHP", icon: <PhpOriginalIcon size={24} /> },
     { name: "MySQL", icon: <MysqlOriginalIcon size={24} /> },
-    { name: "MongoDB", icon: <MongodbOriginalIcon size={24} /> }
+    { name: "MongoDB", icon: <MongodbOriginalIcon size={24} /> },
+    { name: "Nest Js", icon: <NestjsOriginalIcon size={24} /> }
   ];
 
   const programmingLanguages = [
-    { name: "C++", icon: <CplusplusOriginalIcon size={24} /> },
+    { name: "C", icon: <CplusplusOriginalIcon size={24} /> },
     { name: "Java", icon: <JavaOriginalIcon size={24} /> },
     { name: "Python", icon: <PythonOriginalIcon size={24} /> },
     { name: "JavaScript", icon: <JavascriptOriginalIcon size={24} /> }
@@ -62,7 +68,12 @@ const SkillsSection = () => {
     { name: "Git", icon: <GitOriginalIcon size={24} /> },
     { name: "GitHub", icon: <GithubOriginalIcon size={24} /> },
     { name: "Postman", icon: <PostmanOriginalIcon size={24} /> },
-    { name: "Thunder Client", icon: <span className='text-xl'>⚡</span> }
+    { name: "Thunder Client", icon: <span className='text-xl'>⚡</span> },
+    { name: "RAG", icon: <span className='text-xl'>🤖</span> },
+    { name: "Pinecone", icon: <span className='text-xl'>🌲</span> },
+    { name: "n8n", icon: <span className='text-xl'>🔗</span> },
+    { name: "Prisma", icon: <PrismaOriginalIcon size={24} /> },
+    { name: "Docker", icon: <DockerOriginalIcon size={24} /> }
   ];
 
   const deployment = [
