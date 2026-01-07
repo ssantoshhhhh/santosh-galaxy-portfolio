@@ -1,5 +1,41 @@
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
+// Sub-component for individual experience card
+const ExperienceCard = ({ exp, index }: { exp: any, index: number }) => {
+  const reveal = useScrollReveal(exp.side === 'left' ? 'left' : 'right', index * 100);
+
+  return (
+    <div 
+      ref={reveal.ref}
+      className={`flex items-center mb-12 ${exp.side === 'left' ? 'md:flex-row' : 'md:flex-row-reverse'} flex-col md:mb-12 mb-8 ${reveal.className}`}
+      style={reveal.style}
+    >
+      {/* Content */}
+      <div className={`w-full md:w-5/12 ${exp.side === 'left' ? 'md:pr-8 md:text-right' : 'md:pl-8 md:text-left'} text-center md:text-left mb-4 md:mb-0`}>
+        <div className="card-3d bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-500">
+          <h3 className="text-xl font-bold text-white mb-2">{exp.title}</h3>
+          <h4 className="text-gray-300 font-semibold mb-2">{exp.company}</h4>
+          <p className="text-gray-400 text-sm mb-3 whitespace-pre-line">{exp.description}</p>
+        </div>
+      </div>
+
+      {/* Timeline dot - hidden on mobile */}
+      <div className="w-2/12 justify-center hidden md:flex">
+        <div className="w-4 h-4 bg-white rounded-full border-4 border-gray-900 relative z-10">
+          <div className="absolute inset-0 bg-white rounded-full animate-ping opacity-75"></div>
+        </div>
+      </div>
+
+      {/* Duration */}
+      <div className={`w-full md:w-5/12 ${exp.side === 'left' ? 'md:pl-8 md:text-left' : 'md:pr-8 md:text-right'} text-center`}>
+        <div className="bg-white text-black px-4 py-2 rounded-full text-sm font-semibold inline-block">
+          {exp.duration}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ExperienceSection = () => {
   const sectionReveal = useScrollReveal('left');
 
@@ -59,30 +95,7 @@ const ExperienceSection = () => {
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full timeline-line hidden md:block"></div>
 
             {experiences.map((exp, index) => (
-              <div key={index} className={`flex items-center mb-12 ${exp.side === 'left' ? 'md:flex-row' : 'md:flex-row-reverse'} flex-col md:mb-12 mb-8`}>
-                {/* Content */}
-                <div className={`w-full md:w-5/12 ${exp.side === 'left' ? 'md:pr-8 md:text-right' : 'md:pl-8 md:text-left'} text-center md:text-left mb-4 md:mb-0`}>
-                  <div className="card-3d bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-500">
-                    <h3 className="text-xl font-bold text-white mb-2">{exp.title}</h3>
-                    <h4 className="text-gray-300 font-semibold mb-2">{exp.company}</h4>
-                    <p className="text-gray-400 text-sm mb-3">{exp.description}</p>
-                  </div>
-                </div>
-
-                {/* Timeline dot - hidden on mobile */}
-                <div className="w-2/12 justify-center hidden md:flex">
-                  <div className="w-4 h-4 bg-white rounded-full border-4 border-gray-900 relative z-10">
-                    <div className="absolute inset-0 bg-white rounded-full animate-ping opacity-75"></div>
-                  </div>
-                </div>
-
-                {/* Duration */}
-                <div className={`w-full md:w-5/12 ${exp.side === 'left' ? 'md:pl-8 md:text-left' : 'md:pr-8 md:text-right'} text-center`}>
-                  <div className="bg-white text-black px-4 py-2 rounded-full text-sm font-semibold inline-block">
-                    {exp.duration}
-                  </div>
-                </div>
-              </div>
+              <ExperienceCard key={index} exp={exp} index={index} />
             ))}
           </div>
         </div>

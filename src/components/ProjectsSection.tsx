@@ -2,6 +2,44 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
+// Sub-component for individual project card to handle animation hooks
+const ProjectCard = ({ project, index }: { project: any, index: number }) => {
+  const reveal = useScrollReveal('up', index * 100); // 100ms stagger per item
+
+  return (
+    <div
+      ref={reveal.ref}
+      onClick={() => {
+        if (project.liveUrl && project.liveUrl !== '#' && project.liveUrl !== "") {
+          window.open(project.liveUrl, '_blank');
+        } else if (project.codeUrl && project.codeUrl !== '#' && project.codeUrl !== "") {
+          window.open(project.codeUrl, '_blank');
+        }
+      }}
+      className={`card-3d bg-white/5 dark:bg-black/80 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 hover:border-white/30 hover:-translate-y-1 transition-all duration-300 relative cursor-pointer group ${reveal.className}`}
+      style={reveal.style}
+    >
+      <div className="relative overflow-hidden">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <span className="text-white font-medium px-4 py-2 border border-white/30 rounded-full backdrop-blur-sm bg-black/30">
+              View Project
+            </span>
+        </div>
+      </div>
+      <div className="p-5">
+        <h3 className="text-xl font-heading text-white mb-2 group-hover:text-blue-400 transition-colors">{project.title}</h3>
+        <div className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-body">{project.category} • {project.duration}</div>
+        <p className="text-gray-400 text-sm leading-relaxed line-clamp-2 font-body">{project.description}</p>
+      </div>
+    </div>
+  );
+};
+
 const ProjectsSection = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const sectionReveal = useScrollReveal('left');
@@ -130,7 +168,7 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="py-10">
       <div className="container mx-auto px-3">
-        <div ref={sectionReveal.ref} className={sectionReveal.className}>
+        <div ref={sectionReveal.ref} className={sectionReveal.className} style={sectionReveal.style}>
           <div className="text-center mb-8">
             <h2 className="text-4xl lg:text-5xl font-display text-white mb-2">
               My <span className="text-white font-display">Projects</span>
@@ -161,36 +199,8 @@ const ProjectsSection = () => {
 
           {/* Projects grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-            {filteredProjects.map((project: any) => (
-              <div
-                key={project.id}
-                onClick={() => {
-                  if (project.liveUrl && project.liveUrl !== '#' && project.liveUrl !== "") {
-                    window.open(project.liveUrl, '_blank');
-                  } else if (project.codeUrl && project.codeUrl !== '#' && project.codeUrl !== "") {
-                    window.open(project.codeUrl, '_blank');
-                  }
-                }}
-                className="card-3d bg-white/5 dark:bg-black/80 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 hover:border-white/30 hover:-translate-y-1 transition-all duration-300 relative cursor-pointer group"
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                     <span className="text-white font-medium px-4 py-2 border border-white/30 rounded-full backdrop-blur-sm bg-black/30">
-                        View Project
-                     </span>
-                  </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="text-xl font-heading text-white mb-2 group-hover:text-blue-400 transition-colors">{project.title}</h3>
-                  <div className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-body">{project.category} • {project.duration}</div>
-                  <p className="text-gray-400 text-sm leading-relaxed line-clamp-2 font-body">{project.description}</p>
-                </div>
-              </div>
+            {filteredProjects.map((project: any, index: number) => (
+              <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </div>
         </div>

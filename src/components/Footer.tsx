@@ -81,11 +81,19 @@ const Footer = () => {
               Built with ❤️ using React, TypeScript, and Tailwind CSS
             </p>
             {/* Visit Counter */}
-            {visitCount > 0 && (
-              <div className="text-white/50 text-sm mt-4 font-mono font-bold">
-                {visitCount}
+            <div className="mt-8 flex flex-col items-center gap-3">
+              {/* <span className="text-gray-400 text-xs uppercase tracking-widest font-heading">Total Visits</span> */}
+              <div className="flex gap-1">
+                {visitCount.toString().padStart(6, '0').split('').map((digit, i) => (
+                  <div 
+                    key={i} 
+                    className="w-8 h-10 rounded bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-white font-mono font-bold text-lg shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300"
+                  >
+                    {digit}
+                  </div>
+                ))}
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>

@@ -29,11 +29,11 @@ import {
 } from 'react-devicons';
 
 const SkillsSection = () => {
-  const leftReveal = useScrollReveal('left');
-  const rightReveal = useScrollReveal('right');
-  const centerReveal1 = useScrollReveal('up');
-  const centerReveal2 = useScrollReveal('up');
-  const centerReveal3 = useScrollReveal('up');
+  const leftReveal = useScrollReveal('left', 0);
+  const rightReveal = useScrollReveal('right', 200);
+  const centerReveal1 = useScrollReveal('up', 400); // Programming Languages
+  const centerReveal2 = useScrollReveal('up', 600); // Others
+  const centerReveal3 = useScrollReveal('up', 800); // Deployment
 
   const frontendSkills = [
     { name: "React Js", icon: <ReactOriginalIcon size={24} /> },
@@ -121,7 +121,7 @@ const SkillsSection = () => {
             className={`bg-white/3 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-700 ease-out cursor-pointer ${leftReveal.className}`}
             onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
             onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-            style={{ transformStyle: 'preserve-3d' }}
+            style={{ ...leftReveal.style, transformStyle: 'preserve-3d' }}
           >
             <h3 className="text-2xl font-heading text-white mb-8 text-center">Frontend</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -146,7 +146,7 @@ const SkillsSection = () => {
             className={`bg-white/3 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-700 ease-out cursor-pointer ${rightReveal.className}`}
             onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
             onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-            style={{ transformStyle: 'preserve-3d' }}
+            style={{ ...rightReveal.style, transformStyle: 'preserve-3d' }}
           >
             <h3 className="text-2xl font-heading text-white mb-8 text-center">Backend</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -174,7 +174,7 @@ const SkillsSection = () => {
             className={`bg-white/3 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-700 ease-out cursor-pointer ${centerReveal1.className}`}
             onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
             onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-            style={{ transformStyle: 'preserve-3d' }}
+            style={{ ...centerReveal1.style, transformStyle: 'preserve-3d' }}
           >
             <h3 className="text-2xl font-heading text-white mb-8 text-center">Programming Languages</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -192,7 +192,7 @@ const SkillsSection = () => {
             className={`bg-white/3 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-700 ease-out cursor-pointer ${centerReveal2.className}`}
             onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
             onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-            style={{ transformStyle: 'preserve-3d' }}
+            style={{ ...centerReveal2.style, transformStyle: 'preserve-3d' }}
           >
             <h3 className="text-2xl font-heading text-white mb-8 text-center">Others</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -210,7 +210,7 @@ const SkillsSection = () => {
             className={`bg-white/3 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-700 ease-out cursor-pointer ${centerReveal3.className}`}
             onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
             onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-            style={{ transformStyle: 'preserve-3d' }}
+            style={{ ...centerReveal3.style, transformStyle: 'preserve-3d' }}
           >
             <h3 className="text-2xl font-heading text-white mb-8 text-center">Deployment</h3>
             <div className="grid grid-cols-2 gap-4">

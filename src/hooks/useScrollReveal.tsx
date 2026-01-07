@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 
-export const useScrollReveal = (direction: 'left' | 'right' | 'up' = 'up') => {
+export const useScrollReveal = (direction: 'left' | 'right' | 'up' = 'up', delay: number = 0) => {
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
 
@@ -13,8 +13,8 @@ export const useScrollReveal = (direction: 'left' | 'right' | 'up' = 'up') => {
         }
       },
       { 
-        threshold: 0.1,
-        rootMargin: '-50px 0px -50px 0px'
+        threshold: 0.15, // Slightly higher threshold for better visibility before trigger
+        rootMargin: '0px 0px -50px 0px' 
       }
     );
 
@@ -29,11 +29,11 @@ export const useScrollReveal = (direction: 'left' | 'right' | 'up' = 'up') => {
     if (!isVisible) {
       switch (direction) {
         case 'left':
-          return 'opacity-0 translate-x-[-100px]';
+          return 'opacity-0 -translate-x-12'; // Reduced from -100px (approx 3rem)
         case 'right':
-          return 'opacity-0 translate-x-[100px]';
+          return 'opacity-0 translate-x-12'; // Reduced from 100px
         default:
-          return 'opacity-0 translate-y-10';
+          return 'opacity-0 translate-y-12'; // 3rem (48px), slightly more standard slide up
       }
     }
     return 'opacity-100 translate-x-0 translate-y-0';
@@ -41,6 +41,7 @@ export const useScrollReveal = (direction: 'left' | 'right' | 'up' = 'up') => {
 
   return {
     ref: elementRef,
-    className: `transition-all duration-1000 ease-out ${getAnimationClass()}`
+    className: `transition-all duration-1000 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] ${getAnimationClass()}`, // Smooth easing
+    style: { transitionDelay: `${delay}ms` }
   };
 };

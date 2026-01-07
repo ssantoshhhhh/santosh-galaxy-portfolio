@@ -74,7 +74,7 @@ const AboutSection = () => {
       <div className="container mx-auto px-3">
         <div className="grid lg:grid-cols-2 gap-6 items-center">
           {/* Left side - Text content */}
-          <div ref={leftReveal.ref} className={`space-y-4 ${leftReveal.className}`}>
+          <div ref={leftReveal.ref} className={`space-y-4 ${leftReveal.className}`} style={leftReveal.style}>
             <div className="space-y-2">
               <h1 className="text-5xl lg:text-6xl font-display text-white leading-tight">
                 Hi, I'm <span className="text-white font-display">Santosh Seelaboina</span>
@@ -104,7 +104,7 @@ const AboutSection = () => {
           </div>
           
           {/* Right side - Profile image */}
-          <div ref={rightReveal.ref} className={`flex justify-center lg:justify-end ${rightReveal.className}`}>
+          <div ref={rightReveal.ref} className={`flex justify-center lg:justify-end ${rightReveal.className}`} style={rightReveal.style}>
             <div className="relative group">
               <div 
                 ref={imageRef}
