@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
 import PillNav from './PillNav';
 
+const navItems = [
+  { label: 'About', href: '#about' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Education', href: '#education' },
+  { label: 'Contact', href: '#contact' },
+  { label: 'Resume', href: './santosh_resume.pdf', hideOnDesktop: true }
+];
+
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState('about');
-
-  const navItems = [
-    { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Education', href: '#education' },
-    { label: 'Contact', href: '#contact' },
-    { label: 'Resume', href: './santosh_resume.pdf', hideOnDesktop: true }
-  ];
 
   useEffect(() => {
     const handleScroll = () => {

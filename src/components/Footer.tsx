@@ -14,7 +14,7 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="text-center">
           {/* Name/Logo */}
-          <div className="text-3xl font-display bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent mb-6">
+          <div className="text-3xl font-display text-white mb-6">
             Santosh Seelaboina
           </div>
           

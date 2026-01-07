@@ -131,7 +131,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onContactSectionVisible
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-display text-white mb-4">
-            Get In <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent font-display">Touch</span>
+            Get In <span className="text-white font-display">Touch</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto font-body">
             Let's work together to bring your ideas to life. I'm always open to discussing new opportunities.
@@ -164,14 +164,14 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onContactSectionVisible
               </p>
               <div className="flex space-x-4">
                 <Button 
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 font-heading"
+                  className="bg-white text-black hover:bg-gray-200 font-heading"
                   onClick={() => window.open('mailto:santoshkumar90101s@gmail.com')}
                 >
                   Send Email
                 </Button>
                 <Button 
                   variant="outline"
-                  className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white flex items-center gap-2 font-heading"
+                  className="border-white text-white hover:bg-white hover:text-black flex items-center gap-2 font-heading"
                   onClick={() => window.open('tel:8639081207')}
                 >
                   <Phone className="w-5 h-5" />
@@ -194,7 +194,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onContactSectionVisible
                     value={formData.user_name}
                     onChange={handleInputChange}
                     required
-                    className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:border-blue-400 font-body"
+                    className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:border-white font-body"
                     placeholder="Your Name"
                   />
                 </div>
@@ -206,7 +206,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onContactSectionVisible
                     value={formData.user_email}
                     onChange={handleInputChange}
                     required
-                    className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:border-blue-400 font-body"
+                    className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:border-white font-body"
                     placeholder="Enter Your Email"
                   />
                 </div>
@@ -220,7 +220,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onContactSectionVisible
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:border-blue-400 font-body"
+                  className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:border-white font-body"
                   placeholder="Subject"
                 />
               </div>
@@ -233,14 +233,14 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onContactSectionVisible
                   onChange={handleInputChange}
                   required
                   rows={6}
-                  className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:border-blue-400 font-body resize-none"
+                  className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:border-white font-body resize-none"
                   placeholder="Your message..."
                 />
               </div>
               
               <Button 
                 type="submit" 
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 font-heading"
+                className="w-full bg-white text-black hover:bg-gray-200 font-heading"
               >
                 Send Message
               </Button>
