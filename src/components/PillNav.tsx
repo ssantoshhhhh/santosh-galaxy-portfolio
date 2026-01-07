@@ -177,16 +177,13 @@ const PillNav = ({
     });
   };
 
-  const toggleMobileMenu = () => {
-    const newState = !isMobileMenuOpen;
-    setIsMobileMenuOpen(newState);
-
+  useEffect(() => {
     const hamburger = hamburgerRef.current;
     const menu = mobileMenuRef.current;
 
     if (hamburger) {
       const lines = hamburger.querySelectorAll('.hamburger-line');
-      if (newState) {
+      if (isMobileMenuOpen) {
         gsap.to(lines[0], { rotation: 45, y: 3, duration: 0.3, ease });
         gsap.to(lines[1], { rotation: -45, y: -3, duration: 0.3, ease });
       } else {
@@ -196,7 +193,7 @@ const PillNav = ({
     }
 
     if (menu) {
-      if (newState) {
+      if (isMobileMenuOpen) {
         gsap.set(menu, { visibility: 'visible' });
         gsap.fromTo(
           menu,
@@ -224,7 +221,10 @@ const PillNav = ({
         });
       }
     }
+  }, [isMobileMenuOpen, ease]);
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(prev => !prev);
     onMobileMenuClick?.();
   };
 
@@ -428,7 +428,7 @@ const PillNav = ({
 
       <div
         ref={mobileMenuRef}
-        className="md:hidden absolute top-[3em] left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top"
+        className="md:hidden absolute top-[3em] left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top pointer-events-auto"
         style={{
           ...cssVars,
           background: 'var(--base, #f0f0f0)'

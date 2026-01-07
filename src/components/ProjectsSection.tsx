@@ -10,6 +10,30 @@ const ProjectsSection = () => {
 
   const projects = [
     {
+      id: 9,
+      title: "Task AI - Productivity Platform",
+      category: "Web Apps",
+      duration: "Jan 2026",
+      description: "A next-generation, AI-driven productivity platform designed to help high-performers organize their workload. Features AI Smart Planning, Flow State Focus tools, and RAG-integrated task chats.",
+      image: "/projectimages/taskai.png",
+      liveUrl: "https://taskai-chi.vercel.app/",
+      codeUrl: "#",
+      isLive: true,
+      isPrivateRepo: true
+    },
+    {
+      id: 10,
+      title: "JAITRA 2026 - Sports Carnival",
+      category: "Web Apps",
+      duration: "Jan 2026",
+      description: "Official event management and live tracking platform for the state-wide engineering sports festival. Features live scoreboards for multiple sports, coordinator directory, and real-time visitor tracking.",
+      image: "/projectimages/jaithra.png",
+      liveUrl: "https://jaithra2026.in/",
+      codeUrl: "#",
+      isLive: true,
+      isPrivateRepo: true
+    },
+    {
       id: 1,
       title: "Campus Level E-commerce Market Place",
       category: "Web Apps",
@@ -137,7 +161,7 @@ const ProjectsSection = () => {
 
           {/* Projects grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-            {filteredProjects.map((project) => (
+            {filteredProjects.map((project: any) => (
               <div
                 key={project.id}
                 className="card-3d bg-white/5 dark:bg-black/80 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-500 relative"
@@ -171,16 +195,26 @@ const ProjectsSection = () => {
                       title={project.isLive ? "View Live Demo" : "Project Not Live Yet"}
                       disabled={!project.isLive}
                     >
-                      Live Demo
+                      Visit Live Site
                     </Button>
                     <Button
                       size="sm"
                       variant="outline"
-                      className="border-white/20 text-white hover:bg-white/10 bg-transparent font-heading text-xs"
-                      onClick={e => { e.stopPropagation(); window.open(project.codeUrl, '_blank'); }}
-                      title="View Source Code"
+                      className={`font-heading text-xs ${
+                        project.isPrivateRepo || project.codeUrl === '#'
+                        ? 'border-gray-600 text-gray-400 cursor-not-allowed opacity-60' 
+                        : 'border-white/20 text-white hover:bg-white/10 bg-transparent'
+                      }`}
+                      onClick={e => { 
+                        e.stopPropagation(); 
+                        if (!project.isPrivateRepo && project.codeUrl !== '#') {
+                          window.open(project.codeUrl, '_blank');
+                        }
+                      }}
+                      title={project.isPrivateRepo ? "Private Repository" : "View Source Code"}
+                      disabled={project.isPrivateRepo || project.codeUrl === '#'}
                     >
-                      View Code
+                      {project.isPrivateRepo ? 'Private Repo' : 'View Code'}
                     </Button>
                   </div>
                 </div>
