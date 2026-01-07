@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 
 export const useScrollReveal = (direction: 'left' | 'right' | 'up' = 'up') => {
   const [isVisible, setIsVisible] = useState(false);
-  const elementRef = useRef<HTMLElement>(null);
+  const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

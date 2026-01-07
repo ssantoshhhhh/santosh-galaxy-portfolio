@@ -68,7 +68,7 @@ const AboutSection = () => {
   return (
     <section 
       id="about" 
-      className="min-h-screen flex items-center justify-center py-20"
+      className="min-h-screen flex items-center justify-center pt-20 pb-0"
     >
       <div className="container mx-auto px-3">
         <div className="grid lg:grid-cols-2 gap-6 items-center">
@@ -76,12 +76,12 @@ const AboutSection = () => {
           <div ref={leftReveal.ref} className={`space-y-4 ${leftReveal.className}`}>
             <div className="space-y-2">
               <h1 className="text-5xl lg:text-6xl font-display text-white leading-tight">
-                Hi, I'm <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent font-display">Santosh Seelaboina</span>
+                Hi, I'm <span className="text-white font-display">Santosh Seelaboina</span>
               </h1>
               
               <div className="text-2xl lg:text-2xl text-gray-300 min-h-[2.5rem] font-heading">
                 I'm a{' '}
-                <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent font-heading font-semibold">
+                <span className="text-white font-heading font-semibold">
                   {displayedText}
                   <span className="animate-blink">|</span>
                 </span>
@@ -93,7 +93,7 @@ const AboutSection = () => {
             </div>
             
             <div className="flex flex-wrap gap-4">
-              <button onClick={()=>window.open('./santosh_resume.pdf')} className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-full font-heading font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25">
+              <button onClick={()=>window.open('./santosh_resume.pdf')} className="bg-white text-black px-8 py-3 rounded-full font-heading font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/25">
                 Check Resume
               </button>
               {/* <button className="border border-white/20 text-white hover:bg-white/10 px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105">
@@ -107,7 +107,7 @@ const AboutSection = () => {
             <div className="relative group">
               <div 
                 ref={imageRef}
-                className="w-80 h-80 rounded-full overflow-hidden border-4 border-gradient-to-r from-blue-400 to-purple-600 p-1 bg-gradient-to-r from-blue-400 to-purple-600 cursor-pointer transition-all duration-500 ease-out"
+                className="w-80 h-80 rounded-full overflow-hidden border-4 border-white p-1 bg-white cursor-pointer transition-all duration-500 ease-out"
                 onMouseMove={handleImageMouseMove}
                 onMouseLeave={handleImageMouseLeave}
                 style={{ transformStyle: 'preserve-3d' }}
@@ -121,9 +121,9 @@ const AboutSection = () => {
                 </div>
               </div>
               {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full animate-float opacity-70"></div>
-              <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-purple-500 rounded-full animate-float opacity-70" style={{animationDelay: '2s'}}></div>
-              <div className="absolute top-1/4 -left-8 w-4 h-4 bg-cyan-400 rounded-full animate-float opacity-70" style={{animationDelay: '1s'}}></div>
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-gray-500 rounded-full animate-float opacity-70"></div>
+              <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-gray-400 rounded-full animate-float opacity-70" style={{animationDelay: '2s'}}></div>
+              <div className="absolute top-1/4 -left-8 w-4 h-4 bg-gray-300 rounded-full animate-float opacity-70" style={{animationDelay: '1s'}}></div>
             </div>
           </div>
         </div>

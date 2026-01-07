@@ -109,7 +109,7 @@ const ProjectsSection = () => {
         <div ref={sectionReveal.ref} className={sectionReveal.className}>
           <div className="text-center mb-8">
             <h2 className="text-4xl lg:text-5xl font-display text-white mb-2">
-              My <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent font-display">Projects</span>
+              My <span className="text-white font-display">Projects</span>
             </h2>
             <p className="text-gray-400 text-base max-w-2xl mx-auto mb-4 font-body">
               Here are some of the projects I've worked on, showcasing my skills and creativity
@@ -125,7 +125,7 @@ const ProjectsSection = () => {
                   size="sm"
                   className={`font-heading text-xs sm:text-sm ${
                     activeFilter === filter
-                      ? 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white'
+                      ? 'bg-white text-black hover:bg-gray-200'
                       : 'border-white/20 text-white hover:bg-white/10 bg-transparent'
                   } transition-all duration-300`}
                 >
@@ -148,18 +148,18 @@ const ProjectsSection = () => {
                     alt={project.title}
                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 <div className="p-4">
                   <h3 className="text-lg font-heading text-white mb-2">{project.title}</h3>
-                  <div className="text-blue-400 text-sm mb-2 font-body">{project.duration}</div>
+                  <div className="text-gray-300 text-sm mb-2 font-body">{project.duration}</div>
                   <p className="text-gray-400 text-sm mb-4 line-clamp-2 font-body">{project.description}</p>
                   <div className="flex flex-col gap-2">
                     <Button
                       size="sm"
                       className={`font-heading text-xs ${
                         project.isLive 
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white cursor-pointer'
+                          ? 'bg-white text-black hover:bg-gray-200 cursor-pointer'
                           : 'bg-gray-600 text-gray-400 cursor-not-allowed opacity-60'
                       }`}
                       onClick={e => { 
