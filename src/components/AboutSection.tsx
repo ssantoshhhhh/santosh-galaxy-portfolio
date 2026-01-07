@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import santoshImage from '@/assets/santoshhh.jpg';
 
 const AboutSection = () => {
   const [displayedText, setDisplayedText] = useState('');
@@ -112,11 +113,11 @@ const AboutSection = () => {
                 onMouseLeave={handleImageMouseLeave}
                 style={{ transformStyle: 'preserve-3d' }}
               >
-                <div className="w-full h-full rounded-full overflow-hidden bg-gray-800">
+                <div className="w-full h-full rounded-full overflow-hidden bg-gray-900">
                   <img
-                    src="/santosh.jpg"
+                    src={santoshImage}
                     alt="Profile"
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
               </div>

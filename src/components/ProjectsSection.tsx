@@ -164,59 +164,31 @@ const ProjectsSection = () => {
             {filteredProjects.map((project: any) => (
               <div
                 key={project.id}
-                className="card-3d bg-white/5 dark:bg-black/80 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-500 relative"
+                onClick={() => {
+                  if (project.liveUrl && project.liveUrl !== '#' && project.liveUrl !== "") {
+                    window.open(project.liveUrl, '_blank');
+                  } else if (project.codeUrl && project.codeUrl !== '#' && project.codeUrl !== "") {
+                    window.open(project.codeUrl, '_blank');
+                  }
+                }}
+                className="card-3d bg-white/5 dark:bg-black/80 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 hover:border-white/30 hover:-translate-y-1 transition-all duration-300 relative cursor-pointer group"
               >
-                <div className="relative overflow-hidden group">
+                <div className="relative overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-lg font-heading text-white mb-2">{project.title}</h3>
-                  <div className="text-gray-300 text-sm mb-2 font-body">{project.duration}</div>
-                  <p className="text-gray-400 text-sm mb-4 line-clamp-2 font-body">{project.description}</p>
-                  <div className="flex flex-col gap-2">
-                    <Button
-                      size="sm"
-                      className={`font-heading text-xs ${
-                        project.isLive 
-                          ? 'bg-white text-black hover:bg-gray-200 cursor-pointer'
-                          : 'bg-gray-600 text-gray-400 cursor-not-allowed opacity-60'
-                      }`}
-                      onClick={e => { 
-                        e.stopPropagation(); 
-                        if (project.isLive) {
-                          window.open(project.liveUrl, '_blank');
-                        }
-                      }}
-                      title={project.isLive ? "View Live Demo" : "Project Not Live Yet"}
-                      disabled={!project.isLive}
-                    >
-                      Live Demo
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className={`font-heading text-xs ${
-                        project.isPrivateRepo || project.codeUrl === '#'
-                        ? 'border-gray-600 text-gray-400 cursor-not-allowed opacity-60' 
-                        : 'border-white/20 text-white hover:bg-white/10 bg-transparent'
-                      }`}
-                      onClick={e => { 
-                        e.stopPropagation(); 
-                        if (!project.isPrivateRepo && project.codeUrl !== '#') {
-                          window.open(project.codeUrl, '_blank');
-                        }
-                      }}
-                      title={project.isPrivateRepo ? "Private Repository" : "View Source Code"}
-                      disabled={project.isPrivateRepo || project.codeUrl === '#'}
-                    >
-                      {project.isPrivateRepo ? 'Private Repo' : 'View Code'}
-                    </Button>
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                     <span className="text-white font-medium px-4 py-2 border border-white/30 rounded-full backdrop-blur-sm bg-black/30">
+                        View Project
+                     </span>
                   </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="text-xl font-heading text-white mb-2 group-hover:text-blue-400 transition-colors">{project.title}</h3>
+                  <div className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-body">{project.category} • {project.duration}</div>
+                  <p className="text-gray-400 text-sm leading-relaxed line-clamp-2 font-body">{project.description}</p>
                 </div>
               </div>
             ))}

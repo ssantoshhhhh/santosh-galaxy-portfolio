@@ -1,4 +1,5 @@
 import { Linkedin, Github, Twitter, Instagram } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const Footer = () => {
   const socialLinks = [
@@ -8,6 +9,41 @@ const Footer = () => {
     { name: 'Instagram', url: 'https://instagram.com/ssantoshhhhh', icon: <Instagram size={24} /> },
     
   ];
+
+  /* Visit Counter State */
+  const [visitCount, setVisitCount] = useState<number>(0);
+
+  useEffect(() => {
+    const fetchVisitCount = async () => {
+      try {
+        // Using api.counterapi.dev since countapi.xyz is down
+        const namespace = 'santosh-galaxy-portfolio';
+        const key = 'visits';
+        const hasVisited = localStorage.getItem('page_visited');
+        
+        // If not visited, we hit the 'up' endpoint to increment
+        // If visited, we just hit the base endpoint to get the count
+        const endpoint = hasVisited 
+          ? `https://api.counterapi.dev/v1/${namespace}/${key}/`
+          : `https://api.counterapi.dev/v1/${namespace}/${key}/up`;
+
+        const response = await fetch(endpoint);
+        const data = await response.json();
+        
+        // counterapi.dev returns { count: number }
+        if (data && typeof data.count === 'number') {
+          setVisitCount(data.count);
+          if (!hasVisited) {
+            localStorage.setItem('page_visited', 'true');
+          }
+        }
+      } catch (error) {
+        console.error("Error updating visit count:", error);
+      }
+    };
+
+    fetchVisitCount();
+  }, []);
 
   return (
     <footer className="py-12 border-t border-white/10">
@@ -41,9 +77,15 @@ const Footer = () => {
             <p className="mb-2">
               © 2024 Santosh Seelaboina. All rights reserved.
             </p>
-            <p>
+            <p className="mb-4">
               Built with ❤️ using React, TypeScript, and Tailwind CSS
             </p>
+            {/* Visit Counter */}
+            {visitCount > 0 && (
+              <div className="text-white/50 text-sm mt-4 font-mono font-bold">
+                {visitCount}
+              </div>
+            )}
           </div>
         </div>
       </div>
