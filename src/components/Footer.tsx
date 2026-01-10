@@ -82,7 +82,7 @@ const Footer = () => {
             </p>
             {/* Visit Counter */}
             <div className="mt-8 flex flex-col items-center gap-3">
-              {/* <span className="text-gray-400 text-xs uppercase tracking-widest font-heading">Total Visits</span> */}
+              {/* <span className="text-gray-400 text-xs uppercase tracking-widest font-heading">Total Visits</span>N */}
               <div className="flex gap-1">
                 {visitCount.toString().padStart(6, '0').split('').map((digit, i) => (
                   <div 
