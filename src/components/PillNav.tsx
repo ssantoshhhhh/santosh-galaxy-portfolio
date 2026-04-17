@@ -187,36 +187,44 @@ const PillNav = ({
     if (hamburger) {
       const lines = hamburger.querySelectorAll('.hamburger-line');
       if (newState) {
-        gsap.to(lines[0], { rotation: 45, y: 3, duration: 0.3, ease });
-        gsap.to(lines[1], { rotation: -45, y: -3, duration: 0.3, ease });
+        gsap.to(lines[0], { rotation: 45, y: 6, duration: 0.4, ease: "back.out(1.5)" });
+        gsap.to(lines[1], { opacity: 0, x: -10, duration: 0.3, ease: "power2.out" });
+        gsap.to(lines[2], { rotation: -45, y: -6, duration: 0.4, ease: "back.out(1.5)" });
       } else {
-        gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3, ease });
-        gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.3, ease });
+        gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.4, ease: "back.out(1.5)" });
+        gsap.to(lines[1], { opacity: 1, x: 0, duration: 0.4, ease: "power2.out", delay: 0.1 });
+        gsap.to(lines[2], { rotation: 0, y: 0, duration: 0.4, ease: "back.out(1.5)" });
       }
     }
 
     if (menu) {
+      const listItems = menu.querySelectorAll('li');
       if (newState) {
         gsap.set(menu, { visibility: 'visible' });
         gsap.fromTo(
           menu,
-          { opacity: 0, y: 10, scaleY: 1 },
+          { opacity: 0, scaleY: 0.9, y: -15 },
           {
             opacity: 1,
-            y: 0,
             scaleY: 1,
-            duration: 0.3,
-            ease,
+            y: 0,
+            duration: 0.5,
+            ease: "expo.out",
             transformOrigin: 'top center'
           }
+        );
+        gsap.fromTo(
+          listItems,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, stagger: 0.05, duration: 0.4, ease: "power3.out", delay: 0.1 }
         );
       } else {
         gsap.to(menu, {
           opacity: 0,
-          y: 10,
-          scaleY: 1,
-          duration: 0.2,
-          ease,
+          scaleY: 0.95,
+          y: -10,
+          duration: 0.3,
+          ease: "power2.in",
           transformOrigin: 'top center',
           onComplete: () => {
             gsap.set(menu, { visibility: 'hidden' });
@@ -407,74 +415,74 @@ const PillNav = ({
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
-            className="md:hidden rounded-full border-0 flex flex-col items-center justify-center gap-1 cursor-pointer p-0 relative"
+            className="md:hidden rounded-full border-0 flex flex-col items-center justify-center gap-[4px] cursor-pointer p-0 relative"
             style={{
                 width: 'var(--nav-h)',
                 height: 'var(--nav-h)',
                 background: 'var(--base, #000)'
             }}
             >
-            <span
-                className="hamburger-line w-4 h-0.5 rounded origin-center transition-all duration-[10ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]"
-                style={{ background: 'var(--pill-bg, #fff)' }}
-            />
-            <span
-                className="hamburger-line w-4 h-0.5 rounded origin-center transition-all duration-[10ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]"
-                style={{ background: 'var(--pill-bg, #fff)' }}
-            />
+            <span className="hamburger-line w-5 h-[2px] rounded block" style={{ background: 'var(--pill-bg, #fff)' }} />
+            <span className="hamburger-line w-5 h-[2px] rounded block" style={{ background: 'var(--pill-bg, #fff)' }} />
+            <span className="hamburger-line w-5 h-[2px] rounded block" style={{ background: 'var(--pill-bg, #fff)' }} />
             </button>
         </div>
       </nav>
 
       <div
         ref={mobileMenuRef}
-        className="md:hidden absolute top-[3em] left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top"
-        style={{
-          ...cssVars,
-          background: 'var(--base, #f0f0f0)'
-        }}
+        className="md:hidden absolute top-[calc(100%+1rem)] left-4 right-4 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.8)] z-[998] origin-top border border-white/10 overflow-hidden pointer-events-auto"
+        style={{ background: '#0a0a0a' }}
       >
-        <ul className="list-none m-0 p-[3px] flex flex-col gap-[3px]">
-          {items.map(item => {
-            const defaultStyle = {
-              background: 'var(--pill-bg, #fff)',
-              color: 'var(--pill-text, #fff)'
-            };
-            const hoverIn = (e: React.MouseEvent<HTMLAnchorElement>) => {
-              e.currentTarget.style.background = 'var(--base)';
-              e.currentTarget.style.color = 'var(--hover-text, #fff)';
-            };
-            const hoverOut = (e: React.MouseEvent<HTMLAnchorElement>) => {
-              e.currentTarget.style.background = 'var(--pill-bg, #fff)';
-              e.currentTarget.style.color = 'var(--pill-text, #fff)';
+        {/* Sleek top highlight */}
+        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-white/[0.04] to-transparent pointer-events-none" />
+
+        <ul className="list-none m-0 p-4 flex flex-col gap-2 relative z-10 w-full box-border">
+          {items.map((item) => {
+            const linkClasses =
+              'flex items-center justify-between w-full py-[14px] px-6 text-[14px] font-bold tracking-[0.1em] uppercase rounded-[20px] transition-all duration-300 text-gray-400 bg-white/5 border border-white/5 hover:text-white hover:bg-white/10 hover:border-white/10 active:scale-[0.98] group';
+
+            const handleMobileClick = (e: React.MouseEvent) => {
+              if (item.href.startsWith('#')) {
+                e.preventDefault();
+                const section = document.getElementById(item.href.substring(1));
+                if (section) {
+                  window.scrollTo({ top: section.offsetTop - 100, behavior: 'smooth' });
+                }
+              }
+              toggleMobileMenu();
             };
 
-            const linkClasses =
-              'block py-3 px-4 text-[16px] font-medium rounded-[50px] transition-all duration-200 ease-[cubic-bezier(0.25,0.1,0.25,1)]';
+            const innerContent = (
+              <>
+                <span className="relative">
+                  {item.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full rounded-full opacity-0 group-hover:opacity-100" />
+                </span>
+                <span className="text-white/0 group-hover:text-white/50 transition-all duration-300 transform -translate-x-4 group-hover:translate-x-0">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </span>
+              </>
+            );
 
             return (
-              <li key={item.href}>
+              <li key={item.href} className="w-full">
                 {isRouterLink(item.href) ? (
                   <Link
                     to={item.href}
                     className={linkClasses}
-                    style={defaultStyle}
-                    onMouseEnter={hoverIn}
-                    onMouseLeave={hoverOut}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={handleMobileClick}
                   >
-                    {item.label}
+                    {innerContent}
                   </Link>
                 ) : (
                   <a
                     href={item.href}
                     className={linkClasses}
-                    style={defaultStyle}
-                    onMouseEnter={hoverIn}
-                    onMouseLeave={hoverOut}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={handleMobileClick}
                   >
-                    {item.label}
+                    {innerContent}
                   </a>
                 )}
               </li>

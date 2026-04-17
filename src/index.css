@@ -371,3 +371,13 @@ html {
 .animate-project-preview {
   animation: project-preview 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* Performance optimization for mobile devices: 
+   Disable heavy backdrop filters which cause massive GPU lag 
+   when combined with the animated starfield background */
+@media (max-width: 768px) {
+  *, ::before, ::after {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}

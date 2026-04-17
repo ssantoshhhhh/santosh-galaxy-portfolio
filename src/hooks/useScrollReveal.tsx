@@ -13,8 +13,8 @@ export const useScrollReveal = (direction: 'left' | 'right' | 'up' = 'up', delay
         }
       },
       { 
-        threshold: 0.15, // Slightly higher threshold for better visibility before trigger
-        rootMargin: '0px 0px -50px 0px' 
+        threshold: 0.05, // Lower threshold ensures tall sections trigger on mobile
+        rootMargin: '0px 0px 100px 0px' // Positive margin triggers animation before it enters viewport
       }
     );
 
@@ -41,7 +41,7 @@ export const useScrollReveal = (direction: 'left' | 'right' | 'up' = 'up', delay
 
   return {
     ref: elementRef,
-    className: `transition-all duration-1000 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] ${getAnimationClass()}`, // Smooth easing
+    className: `transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] ${getAnimationClass()}`, // Smooth easing
     style: { transitionDelay: `${delay}ms` }
   };
 };
