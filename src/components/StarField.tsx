@@ -40,8 +40,10 @@ const StarField = () => {
       star.style.position = 'absolute';
       star.style.background = 'white';
       star.style.borderRadius = '50%';
-      star.style.left = x + 'px';
-      star.style.top = y + 'px';
+      star.style.left = '0px';
+      star.style.top = '0px';
+      star.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      star.style.willChange = 'transform, opacity';
       
       container.appendChild(star);
       
@@ -72,8 +74,7 @@ const StarField = () => {
         if (star.y < 0) star.y = window.innerHeight;
         
         // Update position
-        star.element.style.left = star.x + 'px';
-        star.element.style.top = star.y + 'px';
+        star.element.style.transform = `translate3d(${star.x}px, ${star.y}px, 0)`;
         
         // Twinkling effect
         star.opacity += (Math.random() - 0.5) * 0.02;

@@ -85,7 +85,8 @@ const ScrollReveal = ({
       }
     );
 
-    if (enableBlur) {
+    const isMobile = window.innerWidth <= 768;
+    if (enableBlur && !isMobile) {
       gsap.fromTo(
         wordElements,
         { filter: `blur(${blurStrength}px)` },
