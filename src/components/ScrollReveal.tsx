@@ -27,8 +27,8 @@ const ScrollReveal = ({
   blurStrength = 4,
   containerClassName = '',
   textClassName = '',
-  rotationEnd = 'center center',
-  wordAnimationEnd = 'center center'
+  rotationEnd = 'bottom 20%',
+  wordAnimationEnd = 'bottom 20%'
 }: ScrollRevealProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 

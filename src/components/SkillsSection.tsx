@@ -1,5 +1,7 @@
 import { useRef } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import BorderGlow from './BorderGlow';
+import { use3DTilt } from '@/hooks/use3DTilt';
 import {
   ReactOriginalIcon,
   ElectronOriginalIcon,
@@ -84,23 +86,7 @@ const SkillsSection = () => {
     { name: "Infinity Free", icon: <span className='text-xl'>∞</span> }
   ];
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, cardRef: HTMLDivElement) => {
-    const rect = cardRef.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    
-    const rotateX = (y - centerY) / 8;
-    const rotateY = (centerX - x) / 8;
-    
-    cardRef.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
-  };
-
-  const handleMouseLeave = (cardRef: HTMLDivElement) => {
-    cardRef.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
-  };
+  const { handleMouseMove, handleMouseLeave } = use3DTilt();
 
   return (
     <section id="skills" className="py-20">
@@ -116,52 +102,84 @@ const SkillsSection = () => {
 
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Frontend Card */}
-          <div 
-            ref={leftReveal.ref}
-            className={`bg-white/3 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-700 ease-out cursor-pointer ${leftReveal.className}`}
-            onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
-            onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-            style={{ ...leftReveal.style, transformStyle: 'preserve-3d' }}
-          >
-            <h3 className="text-2xl font-heading text-white mb-8 text-center">Frontend</h3>
-            <div className="grid grid-cols-2 gap-4">
-              {frontendSkills.map((skill, index) => (
-                <div 
-                  key={skill.name}
-                  className="flex items-center justify-center space-x-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-white/10"
-                  style={{
-                    animationDelay: `${index * 0.1}s`
-                  }}
-                >
-                  <span className="text-2xl">{skill.icon}</span>
-                  <span className="text-white font-body font-medium text-sm">{skill.name}</span>
+          <div ref={leftReveal.ref} className={`h-full ${leftReveal.className}`} style={leftReveal.style}>
+            <div
+              className="h-full cursor-pointer transition-transform duration-75 ease-out"
+              onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
+              onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <BorderGlow
+                edgeSensitivity={30}
+                glowColor="40 80 80"
+                backgroundColor="#120F17"
+                borderRadius={24}
+                glowRadius={40}
+                glowIntensity={1}
+                coneSpread={25}
+                animated={false}
+                colors={['#c084fc', '#f472b6', '#38bdf8']}
+                className="h-full w-full backdrop-blur-sm"
+              >
+                <div className="p-8 w-full h-full">
+                  <h3 className="text-2xl font-heading text-white mb-8 text-center">Frontend</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    {frontendSkills.map((skill, index) => (
+                      <div 
+                        key={skill.name}
+                        className="flex items-center justify-center space-x-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-white/10"
+                        style={{
+                          animationDelay: `${index * 0.1}s`
+                        }}
+                      >
+                        <span className="text-2xl">{skill.icon}</span>
+                        <span className="text-white font-body font-medium text-sm">{skill.name}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+              </BorderGlow>
             </div>
           </div>
 
           {/* Backend Card */}
-          <div 
-            ref={rightReveal.ref}
-            className={`bg-white/3 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-700 ease-out cursor-pointer ${rightReveal.className}`}
-            onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
-            onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-            style={{ ...rightReveal.style, transformStyle: 'preserve-3d' }}
-          >
-            <h3 className="text-2xl font-heading text-white mb-8 text-center">Backend</h3>
-            <div className="grid grid-cols-2 gap-4">
-              {backendSkills.map((skill, index) => (
-                <div 
-                  key={skill.name}
-                  className="flex items-center justify-center space-x-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-white/10"
-                  style={{
-                    animationDelay: `${index * 0.1}s`
-                  }}
-                >
-                  <span className="text-2xl">{skill.icon}</span>
-                  <span className="text-white font-body font-medium text-sm">{skill.name}</span>
+          <div ref={rightReveal.ref} className={`h-full ${rightReveal.className}`} style={rightReveal.style}>
+            <div
+              className="h-full cursor-pointer transition-transform duration-75 ease-out"
+              onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
+              onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <BorderGlow
+                edgeSensitivity={30}
+                glowColor="40 80 80"
+                backgroundColor="#120F17"
+                borderRadius={24}
+                glowRadius={40}
+                glowIntensity={1}
+                coneSpread={25}
+                animated={false}
+                colors={['#c084fc', '#f472b6', '#38bdf8']}
+                className="h-full w-full backdrop-blur-sm"
+              >
+                <div className="p-8 w-full h-full">
+                  <h3 className="text-2xl font-heading text-white mb-8 text-center">Backend</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    {backendSkills.map((skill, index) => (
+                      <div 
+                        key={skill.name}
+                        className="flex items-center justify-center space-x-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-white/10"
+                        style={{
+                          animationDelay: `${index * 0.1}s`
+                        }}
+                      >
+                        <span className="text-2xl">{skill.icon}</span>
+                        <span className="text-white font-body font-medium text-sm">{skill.name}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+              </BorderGlow>
             </div>
           </div>
         </div>
@@ -169,57 +187,105 @@ const SkillsSection = () => {
         {/* New Skill Cards Row */}
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto mt-12">
           {/* Programming Languages Card */}
-          <div
-            ref={centerReveal1.ref}
-            className={`bg-white/3 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-700 ease-out cursor-pointer ${centerReveal1.className}`}
-            onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
-            onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-            style={{ ...centerReveal1.style, transformStyle: 'preserve-3d' }}
-          >
-            <h3 className="text-2xl font-heading text-white mb-8 text-center">Programming Languages</h3>
-            <div className="grid grid-cols-2 gap-4">
-              {programmingLanguages.map((skill, index) => (
-                <div key={skill.name} className="flex items-center justify-center space-x-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-white/10">
-                  <span className="text-2xl">{skill.icon}</span>
-                  <span className="text-white font-body font-medium text-sm">{skill.name}</span>
+          <div ref={centerReveal1.ref} className={`h-full ${centerReveal1.className}`} style={centerReveal1.style}>
+            <div
+              className="h-full cursor-pointer transition-transform duration-75 ease-out"
+              onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
+              onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <BorderGlow
+                edgeSensitivity={30}
+                glowColor="40 80 80"
+                backgroundColor="#120F17"
+                borderRadius={24}
+                glowRadius={40}
+                glowIntensity={1}
+                coneSpread={25}
+                animated={false}
+                colors={['#c084fc', '#f472b6', '#38bdf8']}
+                className="h-full w-full backdrop-blur-sm"
+              >
+                <div className="p-8 w-full h-full">
+                  <h3 className="text-2xl font-heading text-white mb-8 text-center">Programming Languages</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    {programmingLanguages.map((skill, index) => (
+                      <div key={skill.name} className="flex items-center justify-center space-x-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-white/10">
+                        <span className="text-2xl">{skill.icon}</span>
+                        <span className="text-white font-body font-medium text-sm">{skill.name}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+              </BorderGlow>
             </div>
           </div>
           {/* Others Card */}
-          <div
-            ref={centerReveal2.ref}
-            className={`bg-white/3 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-700 ease-out cursor-pointer ${centerReveal2.className}`}
-            onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
-            onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-            style={{ ...centerReveal2.style, transformStyle: 'preserve-3d' }}
-          >
-            <h3 className="text-2xl font-heading text-white mb-8 text-center">Others</h3>
-            <div className="grid grid-cols-2 gap-4">
-              {others.map((skill, index) => (
-                <div key={skill.name} className="flex items-center justify-center space-x-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-white/10">
-                  <span className="text-2xl">{skill.icon}</span>
-                  <span className="text-white font-body font-medium text-sm">{skill.name}</span>
+          <div ref={centerReveal2.ref} className={`h-full ${centerReveal2.className}`} style={centerReveal2.style}>
+            <div
+              className="h-full cursor-pointer transition-transform duration-75 ease-out"
+              onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
+              onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <BorderGlow
+                edgeSensitivity={30}
+                glowColor="40 80 80"
+                backgroundColor="#120F17"
+                borderRadius={24}
+                glowRadius={40}
+                glowIntensity={1}
+                coneSpread={25}
+                animated={false}
+                colors={['#c084fc', '#f472b6', '#38bdf8']}
+                className="h-full w-full backdrop-blur-sm"
+              >
+                <div className="p-8 w-full h-full">
+                  <h3 className="text-2xl font-heading text-white mb-8 text-center">Others</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    {others.map((skill, index) => (
+                      <div key={skill.name} className="flex items-center justify-center space-x-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-white/10">
+                        <span className="text-2xl">{skill.icon}</span>
+                        <span className="text-white font-body font-medium text-sm">{skill.name}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+              </BorderGlow>
             </div>
           </div>
           {/* Deployment Card (same size as others) */}
-          <div
-            ref={centerReveal3.ref}
-            className={`bg-white/3 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-700 ease-out cursor-pointer ${centerReveal3.className}`}
-            onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
-            onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-            style={{ ...centerReveal3.style, transformStyle: 'preserve-3d' }}
-          >
-            <h3 className="text-2xl font-heading text-white mb-8 text-center">Deployment</h3>
-            <div className="grid grid-cols-2 gap-4">
-              {deployment.map((skill, index) => (
-                <div key={skill.name} className="flex items-center justify-center space-x-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-white/10">
-                  <span className="text-2xl">{skill.icon}</span>
-                  <span className="text-white font-body font-medium text-sm">{skill.name}</span>
+          <div ref={centerReveal3.ref} className={`h-full ${centerReveal3.className}`} style={centerReveal3.style}>
+            <div
+              className="h-full cursor-pointer transition-transform duration-75 ease-out"
+              onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
+              onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <BorderGlow
+                edgeSensitivity={30}
+                glowColor="40 80 80"
+                backgroundColor="#120F17"
+                borderRadius={24}
+                glowRadius={40}
+                glowIntensity={1}
+                coneSpread={25}
+                animated={false}
+                colors={['#c084fc', '#f472b6', '#38bdf8']}
+                className="h-full w-full backdrop-blur-sm"
+              >
+                <div className="p-8 w-full h-full">
+                  <h3 className="text-2xl font-heading text-white mb-8 text-center">Deployment</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    {deployment.map((skill, index) => (
+                      <div key={skill.name} className="flex items-center justify-center space-x-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-white/10">
+                        <span className="text-2xl">{skill.icon}</span>
+                        <span className="text-white font-body font-medium text-sm">{skill.name}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+              </BorderGlow>
             </div>
           </div>
         </div>

@@ -1,41 +1,55 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import BorderGlow from './BorderGlow';
 
 // Sub-component for individual project card to handle animation hooks
 const ProjectCard = ({ project, index }: { project: any, index: number }) => {
   const reveal = useScrollReveal('up', index * 100); // 100ms stagger per item
 
   return (
-    <div
-      ref={reveal.ref}
-      onClick={() => {
-        if (project.liveUrl && project.liveUrl !== '#' && project.liveUrl !== "") {
-          window.open(project.liveUrl, '_blank');
-        } else if (project.codeUrl && project.codeUrl !== '#' && project.codeUrl !== "") {
-          window.open(project.codeUrl, '_blank');
-        }
-      }}
-      className={`card-3d bg-white/5 dark:bg-black/80 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 hover:border-white/30 hover:-translate-y-1 transition-all duration-300 relative cursor-pointer group ${reveal.className}`}
-      style={reveal.style}
-    >
-      <div className="relative overflow-hidden">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <span className="text-white font-medium px-4 py-2 border border-white/30 rounded-full backdrop-blur-sm bg-black/30">
-              View Project
-            </span>
+    <div ref={reveal.ref} className={`h-full ${reveal.className}`} style={reveal.style}>
+      <BorderGlow
+        edgeSensitivity={30}
+        glowColor="40 80 80"
+        backgroundColor="#120F17"
+        borderRadius={16}
+        glowRadius={40}
+        glowIntensity={1}
+        coneSpread={25}
+        animated={false}
+        colors={['#c084fc', '#f472b6', '#38bdf8']}
+        className="card-3d h-full w-full backdrop-blur-md cursor-pointer group hover:-translate-y-1 transition-all duration-300"
+      >
+        <div
+          onClick={() => {
+            if (project.liveUrl && project.liveUrl !== '#' && project.liveUrl !== "") {
+              window.open(project.liveUrl, '_blank');
+            } else if (project.codeUrl && project.codeUrl !== '#' && project.codeUrl !== "") {
+              window.open(project.codeUrl, '_blank');
+            }
+          }}
+          className="relative overflow-hidden flex flex-col h-full rounded-2xl"
+        >
+          <div className="relative overflow-hidden rounded-t-2xl">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="text-white font-medium px-4 py-2 border border-white/30 rounded-full backdrop-blur-sm bg-black/30">
+                  View Project
+                </span>
+            </div>
+          </div>
+          <div className="p-5 flex-1">
+            <h3 className="text-xl font-heading text-white mb-2 group-hover:text-blue-400 transition-colors">{project.title}</h3>
+            <div className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-body">{project.category} • {project.duration}</div>
+            <p className="text-gray-400 text-sm leading-relaxed line-clamp-2 font-body">{project.description}</p>
+          </div>
         </div>
-      </div>
-      <div className="p-5">
-        <h3 className="text-xl font-heading text-white mb-2 group-hover:text-blue-400 transition-colors">{project.title}</h3>
-        <div className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-body">{project.category} • {project.duration}</div>
-        <p className="text-gray-400 text-sm leading-relaxed line-clamp-2 font-body">{project.description}</p>
-      </div>
+      </BorderGlow>
     </div>
   );
 };

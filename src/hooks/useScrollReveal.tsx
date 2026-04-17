@@ -41,7 +41,7 @@ export const useScrollReveal = (direction: 'left' | 'right' | 'up' = 'up', delay
 
   return {
     ref: elementRef,
-    className: `transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${getAnimationClass()}`, // Faster, smoother easing
+    className: `transition-all duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${getAnimationClass()}`, // Balanced premium speed
     style: { transitionDelay: `${delay}ms` }
   };
 };
