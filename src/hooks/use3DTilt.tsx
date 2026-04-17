@@ -10,8 +10,8 @@ export const use3DTilt = () => {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
     
-    const rotateX = (y - centerY) / 8;
-    const rotateY = (centerX - x) / 8;
+    const rotateX = (y - centerY) / 25;
+    const rotateY = (centerX - x) / 25;
     
     cardRef.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
   }, []);

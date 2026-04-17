@@ -104,7 +104,7 @@ const SkillsSection = () => {
           {/* Frontend Card */}
           <div ref={leftReveal.ref} className={`h-full ${leftReveal.className}`} style={leftReveal.style}>
             <div
-              className="h-full cursor-pointer transition-transform duration-75 ease-out"
+              className="h-full cursor-pointer transition-transform duration-300 ease-out"
               onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
               onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
               style={{ transformStyle: 'preserve-3d' }}
@@ -145,7 +145,7 @@ const SkillsSection = () => {
           {/* Backend Card */}
           <div ref={rightReveal.ref} className={`h-full ${rightReveal.className}`} style={rightReveal.style}>
             <div
-              className="h-full cursor-pointer transition-transform duration-75 ease-out"
+              className="h-full cursor-pointer transition-transform duration-300 ease-out"
               onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
               onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
               style={{ transformStyle: 'preserve-3d' }}
@@ -189,7 +189,7 @@ const SkillsSection = () => {
           {/* Programming Languages Card */}
           <div ref={centerReveal1.ref} className={`h-full ${centerReveal1.className}`} style={centerReveal1.style}>
             <div
-              className="h-full cursor-pointer transition-transform duration-75 ease-out"
+              className="h-full cursor-pointer transition-transform duration-300 ease-out"
               onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
               onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
               style={{ transformStyle: 'preserve-3d' }}
@@ -223,7 +223,7 @@ const SkillsSection = () => {
           {/* Others Card */}
           <div ref={centerReveal2.ref} className={`h-full ${centerReveal2.className}`} style={centerReveal2.style}>
             <div
-              className="h-full cursor-pointer transition-transform duration-75 ease-out"
+              className="h-full cursor-pointer transition-transform duration-300 ease-out"
               onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
               onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
               style={{ transformStyle: 'preserve-3d' }}
@@ -257,7 +257,7 @@ const SkillsSection = () => {
           {/* Deployment Card (same size as others) */}
           <div ref={centerReveal3.ref} className={`h-full ${centerReveal3.className}`} style={centerReveal3.style}>
             <div
-              className="h-full cursor-pointer transition-transform duration-75 ease-out"
+              className="h-full cursor-pointer transition-transform duration-300 ease-out"
               onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
               onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
               style={{ transformStyle: 'preserve-3d' }}
