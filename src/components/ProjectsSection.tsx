@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import BorderGlow from './BorderGlow';
+import csdcsitImg from '../projectimages/csd-csit.png';
 
 // Sub-component for individual project card to handle animation hooks
 const ProjectCard = ({ project, index }: { project: any, index: number }) => {
@@ -62,13 +63,13 @@ const ProjectsSection = () => {
 
   const projects = [
     {
-      id: 9,
-      title: "Task AI - Productivity Platform",
+      id: 11,
+      title: "CSD & CSIT Department Website",
       category: "Web Apps",
       duration: "Jan 2026",
-      description: "A next-generation, AI-driven productivity platform designed to help high-performers organize their workload. Features AI Smart Planning, Flow State Focus tools, and RAG-integrated task chats.",
-      image: "/projectimages/taskai.png",
-      liveUrl: "https://taskai-chi.vercel.app/",
+      description: "Official customized webpage for the CSD & CSIT engineering departments at SRKR. Features responsive layouts, comprehensive academic information, and modern UI components.",
+      image: csdcsitImg,
+      liveUrl: "http://csd-csit.page.gd/",
       codeUrl: "#",
       isLive: true,
       isPrivateRepo: true
@@ -81,6 +82,29 @@ const ProjectsSection = () => {
       description: "Official event management and live tracking platform for the state-wide engineering sports festival. Features live scoreboards for multiple sports, coordinator directory, and real-time visitor tracking.",
       image: "/projectimages/jaithra.png",
       liveUrl: "https://jaithra2026.in/",
+      codeUrl: "#",
+      isLive: true,
+      isPrivateRepo: true
+    },
+    {
+      id: 3,
+      title: "CSS Loaders Web App",
+      category: "Web Apps",
+      duration: "July 2025",
+      description: "A collection of beautiful and customizable CSS loading animations and spinners. Built with pure CSS and JavaScript, featuring various animation styles, customizable colors, and easy integration for web projects.",
+      image: "/projectimages/css-loaders.png",
+      liveUrl: "https://css-loaders-liard.vercel.app/",
+      codeUrl: "https://github.com/ssantoshhhhh/css-loaders.git",
+      isLive: true
+    },
+    {
+      id: 9,
+      title: "Task AI - Productivity Platform",
+      category: "Web Apps",
+      duration: "Jan 2026",
+      description: "A next-generation, AI-driven productivity platform designed to help high-performers organize their workload. Features AI Smart Planning, Flow State Focus tools, and RAG-integrated task chats.",
+      image: "/projectimages/taskai.png",
+      liveUrl: "https://taskai-chi.vercel.app/",
       codeUrl: "#",
       isLive: true,
       isPrivateRepo: true
@@ -106,17 +130,6 @@ const ProjectsSection = () => {
       liveUrl: "",
       codeUrl: "https://github.com/ssantoshhhhh/flick-chat.git",
       isLive: false
-    },
-    {
-      id: 3,
-      title: "CSS Loaders Web App",
-      category: "Web Apps",
-      duration: "July 2025",
-      description: "A collection of beautiful and customizable CSS loading animations and spinners. Built with pure CSS and JavaScript, featuring various animation styles, customizable colors, and easy integration for web projects.",
-      image: "/projectimages/css-loaders.png",
-      liveUrl: "https://css-loaders-liard.vercel.app/",
-      codeUrl: "https://github.com/ssantoshhhhh/css-loaders.git",
-      isLive: true
     },
     {
       id: 4,
