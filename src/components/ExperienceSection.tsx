@@ -1,4 +1,5 @@
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import BorderGlow from './BorderGlow';
 
 // Sub-component for individual experience card
 const ExperienceCard = ({ exp, index }: { exp: any, index: number }) => {
@@ -12,11 +13,24 @@ const ExperienceCard = ({ exp, index }: { exp: any, index: number }) => {
     >
       {/* Content */}
       <div className={`w-full md:w-5/12 ${exp.side === 'left' ? 'md:pr-8 md:text-right' : 'md:pl-8 md:text-left'} text-center md:text-left mb-4 md:mb-0`}>
-        <div className="card-3d bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-500">
-          <h3 className="text-xl font-bold text-white mb-2">{exp.title}</h3>
-          <h4 className="text-gray-300 font-semibold mb-2">{exp.company}</h4>
-          <p className="text-gray-400 text-sm mb-3 whitespace-pre-line">{exp.description}</p>
-        </div>
+        <BorderGlow
+          edgeSensitivity={30}
+          glowColor="40 80 80"
+          backgroundColor="#120F17"
+          borderRadius={16}
+          glowRadius={40}
+          glowIntensity={1}
+          coneSpread={25}
+          animated={false}
+          colors={['#c084fc', '#f472b6', '#38bdf8']}
+          className="card-3d backdrop-blur-md transition-all duration-500 w-full"
+        >
+          <div className="p-6 flex flex-col h-full w-full">
+            <h3 className="text-xl font-bold text-white mb-2">{exp.title}</h3>
+            <h4 className="text-gray-300 font-semibold mb-2">{exp.company}</h4>
+            <p className="text-gray-400 text-sm mb-3 whitespace-pre-line">{exp.description}</p>
+          </div>
+        </BorderGlow>
       </div>
 
       {/* Timeline dot - hidden on mobile */}
