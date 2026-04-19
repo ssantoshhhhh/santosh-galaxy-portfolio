@@ -46,25 +46,36 @@ const AboutSection = () => {
   return (
     <section 
       id="about" 
-      className="relative min-h-screen w-full flex items-center overflow-hidden bg-[#15161a]"
+      className="relative min-h-screen w-full flex items-center overflow-hidden"
     >
-      {/* Dots pattern background */}
+      {/* Background Wrapper with fade-out mask to blend into next section */}
       <div 
-        className="absolute inset-0 z-0 opacity-20 pointer-events-none"
+        className="absolute inset-0 z-0 pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(circle at center, #ffffff 1.5px, transparent 1.5px)',
-          backgroundSize: '60px 60px'
+          maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)'
         }}
-      />
-
-      {/* Right Side Full Height Image Background */}
-      <div className="absolute right-0 top-0 w-full md:w-1/2 h-full z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#15161a] via-[#15161a]/60 to-transparent z-10 md:bg-gradient-to-r md:from-[#15161a] md:via-[#15161a]/40 md:to-transparent"></div>
-        <img
-          src={santoshImage}
-          alt="Santosh Seelaboina"
-          className="object-cover object-center w-full h-full grayscale opacity-60 md:opacity-90 mix-blend-luminosity"
+      >
+        <div className="absolute inset-0 bg-[#15161a]" />
+        
+        {/* Dots pattern background */}
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: 'radial-gradient(circle at center, #ffffff 1.5px, transparent 1.5px)',
+            backgroundSize: '60px 60px'
+          }}
         />
+
+        {/* Right Side Full Height Image Background */}
+        <div className="absolute right-0 top-0 w-full md:w-1/2 h-full z-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#15161a] via-[#15161a]/60 to-transparent z-10 md:bg-gradient-to-r md:from-[#15161a] md:via-[#15161a]/40 md:to-transparent"></div>
+          <img
+            src={santoshImage}
+            alt="Santosh Seelaboina"
+            className="object-cover object-center w-full h-full grayscale opacity-60 md:opacity-90 mix-blend-luminosity"
+          />
+        </div>
       </div>
 
       <div className="container relative z-10 mx-auto px-6 pt-24 md:pt-0 h-full flex flex-col justify-center">
@@ -74,8 +85,8 @@ const AboutSection = () => {
           style={leftReveal.style}
         >
           {/* Main Huge Typography */}
-          <h1 className="text-[20vw] md:text-[10rem] lg:text-[12rem] xl:text-[14rem] leading-[0.8] font-black tracking-tighter uppercase text-white mb-6 select-none font-display">
-            SANTOS<span className="text-[#FF2A4D]">-H</span>
+          <h1 className="text-[10vw] md:text-[4rem] lg:text-[5.5rem] xl:text-[7rem] pt-8 md:pt-0 leading-[0.85] font-black tracking-tighter uppercase text-white mb-6 select-none font-display text-left whitespace-nowrap">
+            SANTOSH<span className="text-[#FF2A4D]">-S</span>
           </h1>
           
           <div className="space-y-4 max-w-2xl pl-1 md:pl-2">
